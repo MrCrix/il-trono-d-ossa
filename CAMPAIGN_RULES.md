@@ -574,6 +574,39 @@ Non servono a:
 
 ---
 
+### **REGOLE ASSOLUTE SUGLI ARCHI PG**
+
+📌 **REGOLA 1: NON INTRECCIO CON LA MAIN STORY**
+
+Gli archi narrativi dei PG **NON si intrecciano esplicitamente** con la storia principale della campagna.
+
+- Non devono essere necessari per progredire nella trama del Trono d'Ossa
+- Non devono risolvere o facilitare la crisi divina centrale
+- Non devono coinvolgere direttamente Velsharoon, Kelemvor, Myrkul o la trama cosmica
+- Possono **esistere parallelamente** ma non **dipendere** dalla main story
+
+**Eccezioni**: Solo se esplicitamente richiesto dal DM nella descrizione dell'arco.
+
+📌 **REGOLA 2: NON INTRECCIO TRA ARCHI PG**
+
+Gli archi narrativi dei PG **NON si intrecciano esplicitamente** tra loro.
+
+- Ogni arco è personale e indipendente
+- Un PG può aiutare un altro nel suo arco, ma non è necessario
+- Le storyline dei PG non devono dipendere l'una dall'altra
+- Evitare "destini intrecciati" o "profezie condivise"
+
+**Eccezioni**: Solo se esplicitamente richiesto dal DM nella descrizione dell'arco.
+
+📌 **Perché Queste Regole?**
+
+- Permettono ai giocatori di giocare/saltare sessioni senza bloccare altri
+- Evitano che un PG diventi "necessario" per la storia di un altro
+- Mantengono la main story come centro narrativo condiviso
+- Rendono ogni arco personale davvero **personale**
+
+---
+
 ### **Principi Fondamentali**
 
 - La crescita del PG è **graduale**
@@ -619,18 +652,25 @@ diventa una *storia non vissuta*, non una storia annullata.
 
 ### **Impatto sulla Storia Centrale**
 
-- Gli archi dei PG **non devono essere necessari** per la progressione della campagna
-- Possono:
-    - offrire risorse
-    - creare alleati o nemici
-    - modificare il costo delle scelte future
-- Non devono mai diventare:
-    - scorciatoie obbligatorie
-    - soluzioni “giuste” alla trama cosmica
+⚠️ **IMPORTANTE**: Gli archi dei PG **NON si intrecciano con la main story** (vedi Regole Assolute).
+
+Gli archi personali:
+- Esistono **in parallelo** alla storia principale
+- Non risolvono la crisi del Trono d'Ossa
+- Non forniscono "chiavi" necessarie per la progressione
+- Non coinvolgono direttamente gli elementi centrali (Velsharoon, declino divino, Culto)
+
+Possono però:
+- Offrire risorse narrative secondarie
+- Creare PNG che **incidentalmente** incrociano la main story
+- Modificare il **tono emotivo** di alcune scelte
+- Fornire **motivazioni personali** per agire
 
 📌 Il mondo non si piega al PG.
 
 📌 Il PG decide **quanto piegarsi al mondo**.
+
+📌 La main story procede **indipendentemente** dagli archi personali.
 
 ---
 
