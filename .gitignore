@@ -1,0 +1,28 @@
+# Secrets
+.env
+secrets.json
+notion_token.txt
+
+# Player-facing vs DM notes
+**/dm-secrets/
+**/*-secret.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+
+# Node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.bak
+~*
