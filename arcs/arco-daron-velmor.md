@@ -48,17 +48,32 @@ tipo: secondario
    - Varnoth è terrorizzato: ha venduto "mappe incomplete" a uomini incappucciati
    - Menziona il simbolo del "teschio alato" - simbolo dei Cavalieri
    - **Indizio**: Una delle mappe vendute era simile a quella sul tatuaggio di Daron
+   - Varnoth sussurra: "Uno di loro... aveva un tatuaggio identico al tuo. Ma non sembrava... vivo."
 
-2. **Il Tatuaggio Brucia**
-   - Durante l'investigazione, il tatuaggio di Daron si risveglia improvvisamente
-   - Brucia, si illumina, il serpente sembra muoversi sulla pelle
-   - **Significato**: Serj è vicino, o qualcuno sta usando la magia legata al tatuaggio
+2. **Il Tatuaggio Reagisce**
+   - Durante l'investigazione, il tatuaggio di Daron brucia improvvisamente
+   - È doloroso, ma non si illumina - sembra più un *avvertimento* che un segnale
+   - Il serpente sembra contorcersi, come se cercasse di fuggire dalla pelle
+   - **Significato ambiguo**: Qualcuno sta usando magia simile? È pericolo? È Serj... o qualcosa che lo ha sostituito?
 
-3. **Primo Contatto con i Cavalieri**
-   - Daron viene avvicinato da un incappucciato che conosce il suo nome
-   - "Tuo fratello ci ha mandato. Dice che è tempo di completare la mappa."
-   - Prima di poter rispondere, l'incappucciato scompare
-   - **Dubbio seminato**: Serj è vivo? È con loro volontariamente?
+3. **Tracce Contraddittorie**
+   - Daron trova indizi che qualcuno con un tatuaggio gemello è passato da Yhaunn
+   - **Ma**: I testimoni danno descrizioni contrastanti
+     - "Un giovane uomo, sembrava malato, pallido"
+     - "Camminava in modo strano, come se fosse... vuoto"
+     - "Gli occhi... non erano giusti"
+   - Un bambino dice: "Il serpente sul suo braccio era morto. Il tuo è vivo."
+   - **Dubbio seminato**: Era davvero Serj? O qualcosa che indossava la sua forma?
+
+4. **Il Messaggio Criptico**
+   - Daron trova un messaggio lasciato per lui (inciso su una parete, o su un oggetto)
+   - Non è firmato, ma usa un codice che solo lui e Serj conoscevano
+   - Dice solo: "Non cercarmi. Cerca il cuore."
+   - **Interpretazioni possibili**:
+     - Serj è vivo e avverte Daron di stare lontano
+     - Qualcuno ha estorto il codice a Serj
+     - Serj è morto e questo è l'ultimo messaggio che ha lasciato
+     - È una trappola di chi conosce il loro passato
 
 **Pressioni del Mondo:**
 - I Cavalieri del Sepolcro Ombroso sono tornati attivi
@@ -70,7 +85,7 @@ tipo: secondario
 - Seguire un Cavaliere fino al loro nascondiglio
 - Decifrare un messaggio criptato sul tatuaggio
 
-**Milestone Fase 1**: Daron scopre che i Cavalieri del Sepolcro Ombroso non cercano solo il Cuore di Myrkul, ma anche **lui e suo fratello** - le mappe viventi.
+**Milestone Fase 1**: Daron scopre che i Cavalieri del Sepolcro Ombroso cercano **i portatori dei tatuaggi-mappa** - e che qualcuno con un tatuaggio identico al suo è stato visto con loro. Ma non sa se è Serj vivo, Serj corrotto, o qualcos'altro che porta il suo volto.
 
 ---
 
@@ -253,11 +268,13 @@ Anche se Daron ignora l'arco:
 
 Ogni rivelazione chiave ha **almeno 3 indizi indipendenti**:
 
-### Mistero: "Serj è vivo"
+### Mistero: "Qualcuno con il tatuaggio di Serj è attivo"
 
-1. **Diretto**: Lettera/messaggio di Serj
-2. **Comportamentale**: Il tatuaggio reagisce (brucia, si illumina)
-3. **Sistemico**: Testimoni riportano un "giovane esploratore" visto con i Cavalieri
+1. **Diretto**: Messaggio criptico con codice che solo Serj conoscerebbe
+2. **Comportamentale**: Il tatuaggio di Daron reagisce con dolore/avvertimento
+3. **Sistemico**: Testimoni riportano qualcuno con tatuaggio identico, ma le descrizioni sono inquietanti
+
+**Nota**: Nella Fase 1, non è chiaro se Serj è vivo, morto, o trasformato. L'ambiguità è intenzionale.
 
 ### Mistero: "Vartan è diventato un non-morto"
 
@@ -360,7 +377,7 @@ Tragico, personale, con scelte impossibili. Questo arco parla di:
 ## Ganci per le Sessioni
 
 ### Prima Sessione (Yhaunn - Preludio)
-"Mentre esplori il mercato di Yhaunn, noti un banco di antiquariato. Un mercante nervoso vende mappe consunte. Una di esse... sembra familiare. Troppo familiare."
+"Mentre esplori il mercato di Yhaunn, noti un banco di antiquariato. Un mercante nervoso vende mappe consunte. Una di esse... sembra familiare. Troppo familiare. Il mercante sussurra: 'L'ha venduta qualcuno come te. Stesso tatuaggio. Ma gli occhi... gli occhi non erano giusti.'"
 
 ### Sessione Intermedia (Cap 1-2)
 "Il tatuaggio brucia improvvisamente. Per un momento, vedi una visione: tuo fratello Serj, in una cripta oscura, con il simbolo del teschio alato sul petto."

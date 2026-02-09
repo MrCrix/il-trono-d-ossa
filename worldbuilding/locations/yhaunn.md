@@ -18,7 +18,7 @@ popolazione: ~35,000
 
 ## Geografia
 
-Situata sulla costa del Mare delle Stelle Cadenti, Yhaunn è il principale porto del Sembia per commerci con:
+Situata sulla costa del Mare delle Stelle Cadenti, Yhaunn è uno dei porti significativi della Sembia (dopo Selgaunt e Saerloon) per commerci con:
 - Isole del Drago
 - Costa del Vilhon
 - Terre orientali
@@ -99,7 +99,9 @@ Yhaunn è il luogo perfetto per:
 
 ## Contrasto con Ordulin
 
-| Ordulin | Yhaunn |
+> **Nota Homebrew:** Ordulin fu distrutta nel 1385 DR durante la Spellplague e trascinata nello Shadowfell. Nella nostra campagna è stata ricostruita nei decenni successivi al Second Sundering (post-1487 DR), ma porta ancora le cicatrici di quella catastrofe. Questa è una deviazione dal canone ufficiale, dove Ordulin non risulta ricostruita.
+
+| Ordulin (homebrew ricostruita) | Yhaunn |
 |---------|--------|
 | Ordine | Caos controllato |
 | Terra | Mare |
@@ -108,3 +110,7 @@ Yhaunn è il luogo perfetto per:
 | Tempio di Kelemvor forte | Tempio di Umberlee dominante |
 
 Il mare rappresenta l'ignoto, il non controllabile - perfetto per la campagna.
+
+## Contesto Politico (Era 1490s DR)
+
+Dopo la caduta dell'Impero Netherese (1487 DR), le casate mercantili sembiane stanno riconsolidando il potere. Conflitti interni tra ex collaborazionisti Netherese e la resistenza creano instabilità e competizione intensificata tra le città portuali.

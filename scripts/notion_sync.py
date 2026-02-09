@@ -67,6 +67,54 @@ def get_notion_client():
     return Client(auth=NOTION_TOKEN)
 
 
+def commit_and_push_image(image_path):
+    """
+    Commit e push dell'immagine su GitHub.
+
+    Args:
+        image_path: Path dell'immagine da committare
+
+    Returns:
+        True se successo, False altrimenti
+    """
+    try:
+        import subprocess
+
+        # Aggiungi file
+        subprocess.run(['git', 'add', image_path], check=True, capture_output=True)
+
+        # Commit
+        commit_msg = f"Add character image: {Path(image_path).name}"
+        subprocess.run(
+            ['git', 'commit', '-m', commit_msg],
+            check=True,
+            capture_output=True
+        )
+
+        # Push
+        result = subprocess.run(
+            ['git', 'push'],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+
+        print(f"📤 Immagine caricata su GitHub")
+        return True
+
+    except subprocess.CalledProcessError as e:
+        # Se il commit fallisce perché non ci sono cambiamenti, va bene comunque
+        if 'nothing to commit' in str(e.stderr):
+            print(f"ℹ️  Immagine già presente su GitHub")
+            return True
+
+        print(f"⚠️  Errore git: {e.stderr}")
+        return False
+    except Exception as e:
+        print(f"⚠️  Errore push GitHub: {e}")
+        return False
+
+
 def generate_npc_image(description, character_name, output_dir="images/npcs"):
     """
     Genera un'immagine del PNG usando Amazon Nova Canvas.
@@ -148,7 +196,13 @@ Art style: Classic D&D manual illustration, detailed fantasy art, neutral standi
             f.write(image_data)
 
         print(f"✅ Immagine salvata: {image_path}")
-        print(f"   ({num_images} varianti generate, salvata la prima)")
+        if num_images > 1:
+            print(f"   ({num_images} varianti generate, salvata la prima)")
+        else:
+            print(f"   (Dimensione: {width}x{height})")
+
+        # Commit e push su GitHub
+        commit_and_push_image(image_path)
 
         return image_path
 
@@ -423,6 +477,28 @@ def push_to_notion(file_path, db_type):
 
         # Converti markdown in blocchi Notion
         blocks = markdown_to_notion_blocks(content_clean)
+
+        # Se c'è un'immagine generata, aggiungila all'inizio dei blocchi
+        if image_path and os.path.exists(image_path):
+            # Costruisci URL GitHub raw
+            github_url = f"https://raw.githubusercontent.com/MrCrix/il-trono-d-ossa/main/{image_path}"
+
+            # Aggiungi blocco immagine all'inizio
+            image_block = {
+                "object": "block",
+                "type": "image",
+                "image": {
+                    "type": "external",
+                    "external": {
+                        "url": github_url
+                    }
+                }
+            }
+
+            # Inserisci immagine all'inizio
+            blocks.insert(0, image_block)
+
+            print(f"🖼️  Immagine aggiunta: {github_url}")
 
         # Costruisci properties in base al tipo di database
         properties = build_properties(title, metadata, db_type)
