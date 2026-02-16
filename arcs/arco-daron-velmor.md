@@ -77,7 +77,7 @@ tipo: secondario
 
 **Pressioni del Mondo:**
 - I Cavalieri del Sepolcro Ombroso sono tornati attivi
-- Le reliquie che cercano sono legate al declino di Kelemvor (collega alla trama principale)
+- Cercano reliquie di Myrkul per ottenere potere personale e immortalità
 - Orsinar Tharavos (PNG principale) possiede un libro che menziona il Cuore di Myrkul
 
 **Mini-Quest Possibili:**
@@ -103,9 +103,9 @@ tipo: secondario
 
 2. **I Cavalieri Non Sono Soli**
    - I Cavalieri del Sepolcro Ombroso sono una fazione frammentata
-   - Alcuni venerano Myrkul, altri cercano di risvegliare Velsharoon
+   - Alcuni venerano Myrkul, altri cercano l'immortalità attraverso le sue reliquie
    - Serj potrebbe essere caduto in una di queste correnti
-   - **Connessione alla Trama Principale**: I Cavalieri sono collegati al Culto del Trono d'Ossa
+   - **Nota**: I Cavalieri sono una fazione indipendente di necromanti collezionisti
 
 3. **Il Tatuaggio si Completa... Parzialmente**
    - Durante un momento di pericolo estremo, il tatuaggio di Daron reagisce
@@ -120,8 +120,8 @@ tipo: secondario
    - Serj lo sa... e continua comunque a cercarlo
 
 **Pressioni del Mondo:**
-- Il declino di Kelemvor rende le reliquie necromantiche più potenti
-- Altri cercatori (incluso il Culto del Trono) vogliono il Cuore
+- Cicli naturali di magia necrotica rendono il Cuore più instabile e "attivo" periodicamente
+- Altri collezionisti e necromanti vogliono il Cuore per il suo potere intrinseco
 - Il tatuaggio di Daron potrebbe essere l'unica chiave per trovarlo
 
 **Mini-Quest Possibili:**
@@ -189,9 +189,9 @@ tipo: secondario
    - Potrebbe fallire comunque
 
 **Pressioni del Mondo:**
-- Il Culto del Trono d'Ossa vuole il Cuore per il loro rituale
+- Altri necromanti e collezionisti vogliono il Cuore per il suo potere
 - I Cavalieri del Sepolcro Ombroso si stanno frammentando
-- Il declino di Kelemvor rende il Cuore instabile - potrebbe esplodere
+- Il Cuore è instabile per natura - potrebbe esplodere se non contenuto correttamente
 
 **Conseguenze Permanenti:**
 
@@ -206,31 +206,39 @@ Qualunque scelta Daron faccia, ci sono perdite:
 
 ## Collegamenti alla Trama Principale
 
-### Cuore di Myrkul ↔ Trono di Ossa
+### Indipendenza dell'Arco
 
-- Il Cuore di Myrkul è un frammento del potere divino di Myrkul
-- Il Culto del Trono d'Ossa lo vuole per rafforzare il rituale di Velsharoon
-- Se Daron distrugge il Cuore, indebolisce il Culto (ma non lo ferma)
-- Se Daron diventa custode, diventa bersaglio del Culto
+Questo arco è **completamente indipendente** dalla trama principale della campagna. Non coinvolge direttamente Velsharoon, Kelemvor, Myrkul o il Trono d'Ossa.
 
-### Cavalieri del Sepolcro Ombroso ↔ Culto del Trono
+### Cuore di Myrkul - Reliquia Autonoma
 
-- Fazioni separate ma con obiettivi sovrapponibili
-- Alcuni Cavalieri sono stati reclutati dal Culto (tra cui membri corrotti)
-- Corvus (antagonista principale) potrebbe aver manipolato i Cavalieri
+- Il Cuore di Myrkul è una reliquia necrotica antica, estremamente potente
+- È stata ricercata da necromanti e collezionisti per secoli per il suo potere intrinseco
+- Corrode e trasforma chi la tocca, indipendentemente da conflitti divini
+- **NON è necessaria per nessun rituale cosmico** - è semplicemente pericolosa di per sé
+- È una reliquia tra migliaia. Potente, sì. Necessaria al Trono d'Ossa? No.
 
-### Declino di Kelemvor
+### Cavalieri del Sepolcro Ombroso - Fazione Indipendente
 
-- Il Cuore di Myrkul si "risveglia" a causa del declino di Kelemvor
-- Le reliquie necromantiche diventano più potenti e instabili
-- Vartan fu trasformato proprio quando Kelemvor iniziò a indebolirsi
+- Fazione autonoma di necromanti che cerca reliquie di Myrkul per potere personale
+- **NON collegati al Culto del Trono d'Ossa**
+- Cercano il Cuore per i propri scopi: immortalità, potere necrotico, eredità di Myrkul
+- Sono una minaccia parallela, non parte della trama principale
+
+### Instabilità della Reliquia
+
+- Il Cuore di Myrkul è sempre stato instabile e corruttivo
+- Cicli naturali di magia necrotica lo rendono più "attivo" periodicamente
+- Il padre di Daron (Vartan) lo trovò in uno di questi cicli - sfortuna, non destino
+- Non serve alcun evento cosmico per risvegliarlo
 
 ### Serj come Possibile Antagonista Secondario
 
 Se Daron non riesce a salvarlo, Serj potrebbe diventare:
-- Un luogotenente dei Cavalieri
+- Un luogotenente dei Cavalieri del Sepolcro Ombroso
 - Un rivale che cerca il Cuore per sé
-- Un non-morto tragico da affrontare nel finale
+- Un non-morto tragico da affrontare personalmente
+- **Nota**: Questo resta un dramma personale, non un evento della main story
 
 ---
 
@@ -362,15 +370,21 @@ Tragico, personale, con scelte impossibili. Questo arco parla di:
 
 - Accelerare le rivelazioni
 - Rendere Serj più complesso (non solo vittima)
-- Collegare più strettamente al Culto del Trono
+- Approfondire le dinamiche tra i Cavalieri e altri collezionisti di reliquie
 
 ### Impatto sulla Campagna Principale
 
-- **Se Daron distrugge il Cuore**: Il Culto è indebolito (ma non fermato)
-- **Se Daron diventa custode**: Diventa bersaglio primario del Culto
-- **Se Daron ignora l'arco**: Il Cuore viene preso dal Culto (rinforzo nemico)
+**NESSUNO**.
 
-**Importante**: Nessuno di questi scenari blocca o risolve la trama principale. Il Cuore è una risorsa, non la chiave.
+Questo arco è personale e indipendente. Le scelte di Daron riguardano la sua famiglia, non il destino del mondo.
+
+- **Se Daron distrugge il Cuore**: Chiude il suo arco personale, nessun effetto sulla main story
+- **Se Daron diventa custode**: Conseguenze personali (corruzione, immortalità), nessun effetto sulla main story
+- **Se Daron ignora l'arco**: Il Cuore rimane dove si trova, può essere preso da altri collezionisti per i loro scopi privati
+
+Il Cuore di Myrkul è una reliquia tra migliaia. Potente, sì. Necessaria al Trono d'Ossa? No.
+
+Il vero conflitto è intimo: **Famiglia vs. Se Stesso**. Non Famiglia vs. Destino del Mondo.
 
 ---
 
