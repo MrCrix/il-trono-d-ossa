@@ -7,6 +7,106 @@ tipo: secondario
 
 # Arco Narrativo: Lia'wen Galanodel - Il Prezzo della Compassione
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE 1: Il Conto
+    START([🏠 Lettera ufficiale al rifugio:<br/>tasse arretrate, 3 mesi di tempo]) --> A1[Visita dell'Esattore:<br/>educato ma inflessibile]
+    A1 --> A1a[Dettaglio: il funzionario sembra<br/>eseguire ordini di qualcuno]
+    A1a --> A2[Gli Occhi dei Dimenticati:<br/>gli abitanti hanno paura]
+    A2 --> A2a{Lia'wen parte<br/>o resta al rifugio?}
+    A2a -->|Parte| A3[Cerca fondi come avventuriera]
+    A2a -->|Resta| A2b[Il tempo scorre,<br/>nessuna soluzione locale]
+    A2b --> A3
+    A3 --> A4[Offerta avvelenata di Dorian Kesh:<br/>paga i debiti in cambio di un favore]
+    A4 --> A4a{Accetta l'offerta<br/>di Kesh?}
+    A4a -->|Sì| A4b[Scopre: Kesh è commerciante<br/>di schiavi mascherato]
+    A4a -->|No| A4c[Rifiuta - cerca altre vie]
+    A4b & A4c --> A5[Lettera dal rifugio:<br/>un assistito gravemente malato]
+    A5 --> A5a{Torna indietro<br/>o continua?}
+    A5a -->|Torna| A5b[Perde tempo per i fondi]
+    A5a -->|Continua| A5c[Qualcuno soffre<br/>in sua assenza]
+
+    subgraph MINI1 ["Mini-Quest Fase 1 (Liv. 3-5 — Preludio)"]
+        MQ1a[Investigare chi ha ordinato<br/>la richiesta di pagamento]
+        MQ1b[Cercare alleati tra nobili<br/>o mercanti onesti]
+        MQ1c[Missioni pericolose<br/>per raccogliere fondi]
+        MQ1d[Organizzare gli abitanti<br/>per auto-sostenersi]
+    end
+
+    A3 -.-> MINI1
+
+    A5b & A5c --> M1([⭐ Milestone 1: La richiesta<br/>non è casuale. Qualcuno vuole<br/>il terreno per un progetto<br/>mercantile redditizio.])
+
+    %% FASE 2: Il Prezzo dell'Oro
+    M1 --> B1[L'Oro Sporco: missione pagata<br/>da nobile che sfrutta lavoratori]
+    B1 --> B1a{Tiene l'oro sporco<br/>o lo restituisce?}
+    B1a -->|Tiene| B1b[Complice del sistema<br/>che crea povertà]
+    B1a -->|Restituisce| B1c[Perde settimane<br/>di progresso]
+    B1b & B1c --> B2[Dilemma di violenza:<br/>combattere rapido o negoziare lento?]
+    B2 --> B3[Padre Torvin arriva al rifugio<br/>come sostituto temporaneo]
+    B3 --> B3a{Lia'wen è grata<br/>o gelosa?}
+    B3a --> B4[Scoperta: Lady Maressa Thrain<br/>è la vera proprietaria del terreno]
+    B4 --> B4a[Rivelazione: il rifugio non ha<br/>titolo legale - occupato per decenni]
+    B4a --> B5[Maressa offre compromesso:<br/>nuovo rifugio più grande altrove]
+    B5 --> B5a{Il nuovo rifugio sarebbe<br/>sotto supervisione di Maressa<br/>e lontano dalla comunità}
+
+    subgraph MINI2 ["Mini-Quest Fase 2 (Liv. 6-10 — Cap. 1-2)"]
+        MQ2a[Cercare titoli legali<br/>o precedenti]
+        MQ2b[Investigare Lady Maressa:<br/>pragmatica o peggio?]
+        MQ2c[Confrontarsi con Padre Torvin:<br/>alleato o rivale?]
+        MQ2d[Trovare entrate stabili<br/>per il rifugio]
+    end
+
+    B4 -.-> MINI2
+
+    B5a --> M2([⭐ Milestone 2: Non può vincere<br/>con le regole del sistema.<br/>La legge è dalla parte di Maressa.<br/>Servono influenza o leva.])
+
+    %% FASE 3: Il Santuario Spezzato
+    M2 --> C1[Termine scaduto:<br/>guardie allo sgombero]
+    C1 --> C1a[Gli abitanti si rifiutano<br/>di andarsene]
+    C1a --> C2[Visione di Angharradh:<br/>cosa proteggi? Le mura o le persone?]
+    C2 --> C3[Padre Torvin confessa:<br/>mandato da Maressa per valutare]
+    C3 --> C3a{Torvin ha davvero<br/>cambiato idea?}
+    C3a --> C4[Scoperta: scandalo di Maressa,<br/>estorsioni mascherate]
+    C4 --> C4a[Documenti che potrebbero<br/>rovinarla politicamente]
+    C4a --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Accettare il compromesso<br/>di Maressa]
+    SCELTA -->|B| FB[Unirsi alla Chiesa<br/>di Ilmater]
+    SCELTA -->|C| FC[Ricattare Maressa<br/>con lo scandalo]
+    SCELTA -->|D| FD[Lasciar andare il luogo:<br/>il santuario è l'atto]
+    SCELTA -->|E| FE[Resistenza civile<br/>e occupazione pacifica]
+    SCELTA -->|F| FF[Abbandono totale]
+
+    FA --> FA1([🏘️ Rifugio spostato, più grande<br/>ma sotto supervisione.<br/>Sicurezza senza autonomia.])
+    FB --> FB1([⛪ Protezione legale e risorse.<br/>Lia'wen non è più indipendente.<br/>Sicurezza in cambio di libertà.])
+    FC --> FC1([🗡️ Il rifugio resta. Ma Lia'wen<br/>ha compromesso i suoi valori.<br/>Maressa diventa nemica permanente.])
+    FD --> FD1([🕊️ Mura perdute, cuore intatto.<br/>Continua l'opera altrove.<br/>Perdita ma libertà spirituale.])
+    FE --> FE1([✊ Occupazione, protesta pubblica.<br/>Pericolo fisico, esito incerto<br/>ma principi difesi.])
+    FF --> FF1([💔 Lia'wen si arrende.<br/>Rifugio demolito, abitanti dispersi.<br/>Fallimento totale ma libertà.])
+
+    %% Finale passivo
+    M1 -->|Lia'wen ignora l'arco| IGN([🚶 Rifugio sgomberato off-screen.<br/>Abitanti si disperdono.])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style FE1 fill:#7ed321,stroke:#333,color:#000
+    style FF1 fill:#7ed321,stroke:#333,color:#000
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Personale PG** - Lia'wen Galanodel

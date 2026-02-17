@@ -10,6 +10,112 @@ connessioni: Nessuna (arco standalone)
 
 # Arco Narrativo: Elira Thaven - "Il Prezzo del Sangue"
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE INIZIALE: Preludio (Giorno 1-7)
+    START(["🚶 Giorno 1: Partenza da Ordulin.<br/>Lira viaggia come mercantessa."]) --> A1["Giorno 2: Morte di Corvin<br/>(attacco ankheg)"]
+    A1 --> A1a["Ultime parole:<br/>Tuo fratello... il porto...<br/>non fidarti... V..."]
+    A1a --> A2["Giorno 3-4: Lira vulnerabile,<br/>inizia a fidarsi dei PG"]
+    A2 --> A2a[Dettagli tradiscono<br/>origine nobile: modi,<br/>anello prezioso]
+
+    subgraph SEED12 ["Seed 1-2 (Liv. 3 — Preludio, Giorno 2-5)"]
+        S1["Seed 1: La Fuga Disperata<br/>6 mercenari + 1 capitano<br/>attaccano per rapire Lira"]
+        S2["Seed 2: Ultime Parole di Corvin<br/>Medaglione Felzoun, 100gp,<br/>lettera: magazzino 7, porto Est"]
+    end
+
+    A2a --> S1
+    A1a -.-> S2
+
+    S1 --> A3{I PG salvano<br/>Elisabeth?}
+    A3 -->|Sì| A4["Giorno 6: Elisabeth crolla<br/>e rivela la verità"]
+    A3 -->|No| FAIL1(["💀 Elisabeth rapita.<br/>Uccisa off-screen in 1 settimana."])
+
+    A4 --> A4a["Sono Elisabeth Felzoun.<br/>Credo che mio fratello<br/>voglia uccidermi."]
+    A4a --> A5["Giorno 7: Arrivo a Yhaunn"]
+    A5 --> A5a{Come procedere?}
+    A5a -->|Ritorno trionfale| DIR1[Torna a Villa Felzoun.<br/>Varen finge cordialità.]
+    A5a -->|Incontro segreto col padre| DIR2[Sebastian rivela:<br/>sapeva del pericolo]
+    A5a -->|Resta nascosta| DIR3[Elisabeth diventa<br/>quest giver in incognito]
+
+    A4a --> M1([⭐ Milestone 1: Elisabeth è<br/>Lady Felzoun. Il fratello Varen<br/>è il mandante del rapimento.])
+
+    %% FASE INTERMEDIA: Capitolo 1 (Settimane 2-4)
+    DIR1 & DIR2 & DIR3 --> B1[Investigazione a Yhaunn]
+
+    subgraph SEED345 ["Seed 3-4-5 (Liv. 3-5 — Cap. 1, Settimane 2-4)"]
+        S3["Seed 3: Ritorno a Yhaunn<br/>Scelta: tornare a casa<br/>o restare nascosta"]
+        S4["Seed 4: Il Medaglione di Serna<br/>Oggetto di scrying — Varen<br/>sa sempre dove è Elisabeth"]
+        S5["Seed 5: Investigazione al Porto<br/>Magazzino 7: catene, gabbia,<br/>documenti compromettenti"]
+    end
+
+    B1 -.-> SEED345
+
+    B1 --> B2[Scoperta medaglione di Serna:<br/>magia di divinazione]
+    B2 --> B2a{Cosa fare col medaglione?}
+    B2a -->|Distruggere| B2b[Varen perde tracce<br/>ma sospetta]
+    B2a -->|Usare per ingannare| B2c[Depistano Varen<br/>con falsi movimenti]
+    B2a -->|Dire a Serna| B2d[Serna devastata<br/>ma diventa alleata consapevole]
+    B2b & B2c & B2d --> B3[Investigazione al Porto:<br/>magazzino 7]
+    B3 --> B3a[Documenti: il fratello<br/>è il committente]
+    B3a --> B3b["Piano B di Varen:<br/>se rapimento fallisce,<br/>Elisabeth sparisce in mare"]
+
+    B3b --> M2([⭐ Milestone 2: Prove parziali<br/>contro Varen. Serve il confronto<br/>finale per smascherarlo.])
+
+    %% FASE AVANZATA: Capitolo 2-3 (Mesi 2-3)
+    M2 --> C1[Varen organizza il Banchetto<br/>della Riconciliazione]
+
+    subgraph SEED67 ["Seed 6-7 (Liv. 5-7 — Cap. 2-3, Mesi 2-3)"]
+        S6["Seed 6: Il Banchetto<br/>Veleni, assassini,<br/>trappole sociali"]
+        S7["Seed 7: La Nave Fantasma<br/>Equipaggio sostituito da<br/>mercenari — piano disperato"]
+    end
+
+    C1 -.-> SEED67
+
+    C1 --> C1a[Pericoli: vino avvelenato,<br/>assassino tra i servitori]
+    C1a --> C2{Varen isola Elisabeth?}
+    C2 -->|Sì| C2a["Confessione di Varen:<br/>L'impero non può essere diviso.<br/>Papà non capisce."]
+    C2 -->|No, i PG intervengono| C2b[Varen mantiene<br/>la facciata]
+    C2a & C2b --> C3[Raccolta prove definitive]
+    C3 --> C3a{Piano disperato di Varen?}
+    C3a -->|Sì| C4[La Nave Fantasma:<br/>trappola in mare aperto]
+    C3a -->|No, confronto diretto| SCELTA
+    C4 --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Smascheramento pubblico<br/>al Consiglio Mercantile]
+    SCELTA -->|B| FB[Elisabeth rinuncia<br/>all'eredità e parte libera]
+    SCELTA -->|C| FC[Vendetta di sangue:<br/>duello o assassinio]
+    SCELTA -->|D| FD[Compromesso oscuro:<br/>Elisabeth cede il 90%]
+    SCELTA -->|E| FE[L'Inganno dello Specchio:<br/>finta morte di Elisabeth]
+
+    FA --> FA1([👑 Varen esiliato. Elisabeth eredita.<br/>Sebastian devastato ma giusto.<br/>Casata Felzoun rafforzata.])
+    FB --> FB1([🕊️ Elisabeth libera ma in esilio.<br/>Varen eredita tutto.<br/>Sebastian muore spezzato.])
+    FC --> FC1([🗡️ Varen morto. Elisabeth<br/>eredita ma è cambiata:<br/>più fredda, più spietata.])
+    FD --> FD1([🤝 Equilibrio fragile.<br/>Varen ottiene quasi tutto.<br/>Elisabeth vive ma umiliata.])
+    FE --> FE1([🎭 Elisabeth finge la morte.<br/>Varen si rilassa. Elisabeth<br/>riappare con prove schiaccianti.])
+
+    %% Finali passivi
+    A3 -->|PG non intervengono| FAIL1
+    M1 -->|PG non approfondiscono| IGN(["🚶 Elisabeth torna a casa.<br/>Settimane dopo: morta in<br/>un incidente. Varen capofamiglia."])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style FE1 fill:#7ed321,stroke:#333,color:#000
+    style FAIL1 fill:#d0021b,stroke:#333,color:#fff
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Chi è davvero "Elira Thaven"?
 
 ### La Verità Nascosta

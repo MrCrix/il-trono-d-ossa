@@ -7,6 +7,89 @@ tipo: secondario
 
 # Arco Narrativo: Alan Belgioioso - Sotto le Fondamenta
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE 1: L'Ingaggio
+    START([🏛️ Alan arriva a Yhaunn]) --> A1[Incontro con Meldor Thrace]
+    A1 --> A2[Esplorazione della Camera Sigillata]
+    A2 --> A3{Riconosce il Marchio<br/>del Custode Silenzioso?}
+    A3 -->|Sì| A4[Collegamento al Professor Voss]
+    A3 -->|No| A2b[Ricerca negli archivi di Yhaunn]
+    A2b --> A4
+    A4 --> A5[Serina Marlowe si presenta]
+    A5 --> A5a{Accetta l'offerta<br/>di Serina?}
+    A5a -->|Sì| A5b[Apre il sarcofago per Serina]
+    A5a -->|No| A5c[Rifiuta - Serina aumenta pressione]
+    A5b --> M1
+    A5c --> M1
+
+    subgraph MINI1 ["Mini-Quest Fase 1 (Liv. 3-5 — Preludio)"]
+        MQ1a[Investigare chi ha commissionato<br/>i lavori di ristrutturazione]
+        MQ1b[Ricercare storia della casa<br/>negli archivi]
+        MQ1c[Contattare colleghi<br/>sul Professor Voss]
+        MQ1d[Rinforzare temporaneamente<br/>i sigilli]
+    end
+
+    A4 -.-> MINI1
+
+    M1([⭐ Milestone 1: Il sito era<br/>deliberatamente occultato<br/>per attirare Alan])
+
+    %% FASE 2: Il Custode Perduto
+    M1 --> B1[Scoperta dei Diari di Voss]
+    B1 --> B2[Verità: Ordine del Sigillo Sopito]
+    B2 --> B3[Il sarcofago contiene un<br/>Frammento di Entità Vincolata]
+    B3 --> B4[Serina rivelata come cultista]
+    B4 --> B5[Meldor confessa: pagato<br/>per comprare la casa]
+    B5 --> B6[Messaggio postumo di Voss:<br/>Rinforzare / Trasferire / Distruggere]
+
+    subgraph MINI2 ["Mini-Quest Fase 2 (Liv. 6-10 — Cap. 1-2)"]
+        MQ2a[Infiltrarsi nel gruppo<br/>di Serina]
+        MQ2b[Cercare altri membri<br/>dell'Ordine]
+        MQ2c[Trovare materiali rari<br/>per i sigilli]
+        MQ2d[Esplorare storia<br/>dell'entità sigillata]
+    end
+
+    B3 -.-> MINI2
+
+    B6 --> M2([⭐ Milestone 2: Voss è legato<br/>ai sigilli - liberare i frammenti<br/>lo uccide, lasciarli lo fa soffrire])
+
+    %% FASE 3: Il Sigillo Spezzato
+    M2 --> C1[Assedio finale dei cultisti<br/>di Serina]
+    C1 --> C2[Contatto con l'eco di Voss]
+    C2 --> C3{Voss dice che l'entità<br/>era innocente.<br/>Gli credi?}
+    C3 --> C4[Serina rivela: Angelo<br/>caduto di Mystra]
+    C4 --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Rinforzare il Sigillo]
+    SCELTA -->|B| FB[Trasferire il Frammento]
+    SCELTA -->|C| FC[Distruggere il Frammento]
+    SCELTA -->|D| FD[Liberare il Frammento]
+
+    FA --> FA1([🛡️ Alan si lega al sigillo.<br/>Voss riposa. Alan perde la libertà.])
+    FB --> FB1([🗺️ Alan diventa custode errante.<br/>Voss libero. Il frammento esiste ancora.])
+    FC --> FC1([💀 Voss muore. Entità annichilita.<br/>Alan ha scelto sicurezza su conoscenza.])
+    FD --> FD1([✨ Entità liberata.<br/>Rischio enorme. Voss libero.<br/>Conseguenze imprevedibili.])
+
+    %% Finale passivo
+    M1 -->|Alan ignora l'arco| IGN([🚶 Meldor sigilla tutto.<br/>Serina agisce da sola off-screen.])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Personale PG** - Alan Belgioioso

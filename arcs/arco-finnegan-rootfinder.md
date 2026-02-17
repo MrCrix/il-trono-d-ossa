@@ -7,6 +7,100 @@ tipo: secondario
 
 # Arco Narrativo: Finnegan "Fin" Rootfinder - L'Inchiostro che Svanisce
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE 1: I Libri che Mentono
+    START([📖 Fin in viaggio con la carovana]) --> A1[Cancellazione osservata in tempo reale:<br/>righe di un libro sbiadiscono]
+    A1 --> A2[Cerca Maestro Orvil Greyquill:<br/>nessuno lo ricorda]
+    A2 --> A3[Casa vuota di Orvil:<br/>simbolo del libro con pagine bianche]
+    A3 --> A4[Scrive al Collegio della Signora]
+    A4 --> A4a{Il Collegio risponde<br/>con freddezza.<br/>Indaga sul perché?}
+    A4a -->|Sì| A4b[Mentore anziano avverte:<br/>lascia perdere]
+    A4a -->|No| A5
+    A4b --> A5[Incontro con l'Archiviario]
+    A5 --> A5a[Rivelazione: scrivere a mano<br/>protegge dalla cancellazione]
+    A5a --> A5b[Riceve diario vuoto:<br/>scrivi tutto a mano]
+
+    subgraph MINI1 ["Mini-Quest Fase 1 (Liv. 3-5 — Preludio)"]
+        MQ1a[Cercare persone che ricordano<br/>eventi cancellati]
+        MQ1b[Creare archivio personale<br/>scritto a mano]
+        MQ1c[Investigare i Custodi<br/>della Memoria Fedele]
+        MQ1d[Confrontare versioni di libri<br/>in biblioteche diverse]
+    end
+
+    A5b -.-> MINI1
+
+    A5b --> M1([⭐ Milestone 1: Mappa frammentaria<br/>verso una Cronaca Primaria.<br/>Avvertimento: chi cerca sarà cancellato.])
+
+    %% FASE 2: Le Cronache Dimenticate
+    M1 --> B1[Localizza la Prima Cronaca Primaria<br/>in una biblioteca abbandonata]
+    B1 --> B2[Rivelazione: le Cronache<br/>scrivono se stesse in tempo reale]
+    B2 --> B3[Scoperta dei Redattori del Passato:<br/>archivisti che cancellano conoscenza]
+    B3 --> B3a{I Redattori sono malvagi<br/>o proteggono il mondo?}
+    B3a --> B4[Primo avvertimento:<br/>i Redattori sanno della Cronaca]
+    B4 --> B5[Scoperta del Rituale di Unraveling:<br/>incantesimo che disfa la Trama]
+    B5 --> B5a{Cosa fare con questa<br/>conoscenza pericolosa?}
+    B5a -->|Condividerla| B5b[Rischio catastrofico]
+    B5a -->|Distruggerla| B5c[Cancella conoscenza come i Redattori]
+    B5a -->|Tenerla segreta| B5d[Peso morale personale]
+    B5b & B5c & B5d --> B6[Seraph Inkless si presenta:<br/>Redattore disertore]
+    B6 --> B6a{Ti fidi di Seraph?}
+
+    subgraph MINI2 ["Mini-Quest Fase 2 (Liv. 6-10 — Cap. 1-2)"]
+        MQ2a[Cercare altre Cronache Primarie<br/>- 7 sparse per Faerûn]
+        MQ2b[Proteggere magicamente<br/>appunti e diari]
+        MQ2c[Infiltrarsi nei Redattori<br/>per capire i metodi]
+        MQ2d[Decidere cosa fare con<br/>il Rituale di Unraveling]
+    end
+
+    B3 -.-> MINI2
+
+    B6a --> M2([⭐ Milestone 2: I Redattori stanno<br/>per cancellare la caduta di Netheril.<br/>Potrebbe far collassare la Trama.])
+
+    %% FASE 3: La Pagina Bianca
+    M2 --> C1[Assedio della Memoria:<br/>Fin viene cancellato dalla storia]
+    C1 --> C1a[Persone dimenticano chi è Fin.<br/>Scritti sbiadiscono. Countdown attivo.]
+    C1a --> C2[Seraph porta Fin alla<br/>Biblioteca Senza Nome]
+    C2 --> C2a[Scoperta: la tesi di Fin<br/>era già stata cancellata prima]
+    C2a --> C3[Giudizio di Archivarius Null:<br/>lich leader dei Redattori]
+    C3 --> C3a{Archivarius offre:<br/>unisciti o sarai cancellato}
+    C3a --> C4[Seraph confessa: non è<br/>un vero disertore]
+    C4 --> C4a{Seraph ha davvero<br/>cambiato idea?}
+    C4a --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Distruggere la<br/>Biblioteca Senza Nome]
+    SCELTA -->|B| FB[Unirsi ai Redattori<br/>e riformarli]
+    SCELTA -->|C| FC[Preservare le Cronache<br/>e fuggire]
+    SCELTA -->|D| FD[Negoziare un equilibrio<br/>con consiglio neutrale]
+    SCELTA -->|E| FE[Cancellarsi volontariamente]
+
+    FA --> FA1([✨ Tutta la conoscenza torna.<br/>Libertà ma anche caos.<br/>Sangue sulle mani di Fin.])
+    FB --> FB1([⚖️ Compromesso perpetuo.<br/>Diventa ciò che combatteva<br/>ma può cambiarlo.])
+    FC --> FC1([🗺️ Custode errante della verità.<br/>Mai pace, sempre in fuga.])
+    FD --> FD1([🤝 Sistema imperfetto.<br/>Tutti scontenti ma funziona.])
+    FE --> FE1([👻 Martire dimenticato.<br/>Nessuno lo ricorda<br/>ma le Cronache sopravvivono.])
+
+    %% Finale passivo
+    M1 -->|Fin ignora l'arco| IGN([🚶 Fin viene cancellato off-screen.<br/>I Redattori continuano indisturbati.])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style FE1 fill:#7ed321,stroke:#333,color:#000
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Personale PG** - Finnegan "Fin" Rootfinder

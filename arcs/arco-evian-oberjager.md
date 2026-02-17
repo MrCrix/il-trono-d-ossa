@@ -7,6 +7,105 @@ tipo: secondario
 
 # Arco Narrativo: Evian Oberjager - Il Prezzo dei Ricordi
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE 1: L'Eco del Padrone
+    START([⚰️ Evian in viaggio<br/>con la carovana]) --> A1[Sogni del corpo di Kovar Thren:<br/>battaglie, rituali, ordini in Thayan]
+    A1 --> A1a[Dettaglio: Kovar era presente<br/>a Charnel Fields quando Evian morì]
+    A1a --> A2[Messaggero Scheletrico:<br/>il padrone ricorda, il debito non è saldato]
+    A2 --> A3[Il marchio sulla nuca<br/>brucia e prude]
+    A3 --> A3a[Rivelazione: il tatuaggio era<br/>un sigillo di legame magico,<br/>ancora attivo]
+    A3a --> A4[Rifugiato Thayan riconosce<br/>il corpo di Kovar Thren]
+    A4 --> A4a{Come reagisce Evian<br/>al terrore del rifugiato?}
+    A4a -->|Lo interroga| A4b[Scopre: Kovar era<br/>cacciatore di disertori]
+    A4a -->|Lo lascia andare| A4c[Perde informazioni<br/>ma guadagna umanità]
+    A4b & A4c --> M1
+
+    subgraph MINI1 ["Mini-Quest Fase 1 (Liv. 3-5 — Preludio)"]
+        MQ1a[Investigare chi era<br/>Kovar Thren in vita]
+        MQ1b[Cercare mago/chierico per<br/>capire il legame con Ichabod]
+        MQ1c[Decidere cosa fare<br/>con il rifugiato]
+        MQ1d[Nascondere la propria identità<br/>o accettare il corpo]
+    end
+
+    A3a -.-> MINI1
+
+    M1([⭐ Milestone 1: Ichabod ha orchestrato<br/>la rinascita. Il corpo di Kovar<br/>non è casuale. Vuole riaverlo.])
+
+    %% FASE 2: Il Giuramento Spezzato
+    M1 --> B1[Primo contatto diretto con Ichabod:<br/>parla attraverso il legame]
+    B1 --> B1a["Evian, figlio mio.<br/>Pensavi di essere libero?"]
+    B1a --> B2[Ricordi restituiti parzialmente:<br/>frammenti di felicità, esche]
+    B2 --> B2a[Twist: i ricordi sono selezionati<br/>per farlo tornare volontariamente]
+    B2a --> B3[Il corpo agisce da solo<br/>in combattimento]
+    B3 --> B3a[Kovar Thren non è<br/>completamente morto]
+    B3a --> B4[Offerta di Ichabod:<br/>diventa mio warlock]
+    B4 --> B4a{Accetta il patto<br/>di Ichabod?}
+    B4a -->|Considera| B4b[Potere in cambio di schiavitù]
+    B4a -->|Rifiuta| B4c[Ichabod aumenta la pressione]
+    B4b & B4c --> B5[Il Cacciatore arriva:<br/>altro Reborn, schiavo di Ichabod]
+    B5 --> B5a{Uccidere il Cacciatore<br/>o tentare di salvarlo?}
+    B5a -->|Uccidere| B5b[Liberazione tramite morte]
+    B5a -->|Salvare| B5c[Serve spezzare il legame:<br/>è anche il legame di Evian]
+
+    subgraph MINI2 ["Mini-Quest Fase 2 (Liv. 6-10 — Cap. 1-2)"]
+        MQ2a[Cercare rituale per<br/>spezzare il legame]
+        MQ2b[Trovare altri sopravvissuti<br/>di Ichabod]
+        MQ2c[Investigare natura esatta<br/>del giuramento]
+        MQ2d[Decidere: recuperare ricordi<br/>è benedizione o maledizione?]
+    end
+
+    B3 -.-> MINI2
+
+    B5b & B5c --> M2([⭐ Milestone 2: Ichabod vuole Evian<br/>stesso. I ricordi rubati contengono<br/>un segreto che Ichabod deve avere.<br/>Evian sarà consumato.])
+
+    %% FASE 3: La Mente Affamata
+    M2 --> C1[Ultimatum di Ichabod:<br/>una settimana, poi richiamo forzato]
+    C1 --> C1a[Compulsioni fisiche:<br/>il corpo cammina verso Thay]
+    C1a --> C2[Recupero di un ricordo cruciale:<br/>la vera debolezza di Ichabod]
+    C2 --> C2a[Ma il ricordo è frammentato<br/>e incompleto]
+    C2a --> C3[Alleanza impossibile:<br/>un warlock di Ichabod propone<br/>tradimento dall'interno]
+    C3 --> C4[Il corpo si ribella:<br/>Kovar Thren emerge]
+    C4 --> C4a["Devo tornare dal padrone.<br/>Tu sei un intruso."]
+    C4a --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Accettare il patto<br/>e tradire dall'interno]
+    SCELTA -->|B| FB[Spezzare il legame<br/>con la morte]
+    SCELTA -->|C| FC[Recuperare il ricordo<br/>e usarlo come arma]
+    SCELTA -->|D| FD[Fuggire per sempre<br/>ai confini del mondo]
+    SCELTA -->|E| FE[Consegnarsi<br/>completamente]
+
+    FA --> FA1([⚔️ Diventa warlock, tenta assassinio.<br/>Se riesce: libero ma marchiato.<br/>Se fallisce: schiavo peggiore.])
+    FB --> FB1([💀 Evian muore libero.<br/>Kovar distrutto. Ichabod perde la preda.<br/>Rinascerà? Nessuno lo sa.])
+    FC --> FC1([🧠 Usa il segreto come leva.<br/>Negozia libertà.<br/>Ma scopre verità terribile su sé.])
+    FD --> FD1([🏃 Esilio eterno. Nessuna vendetta,<br/>nessuna verità. Libertà parziale,<br/>sempre in fuga.])
+    FE --> FE1([⛓️ Schiavitù consapevole.<br/>Protegge altri dalla stessa sorte.<br/>Diventa PNG di Ichabod.])
+
+    %% Finale extra
+    SCELTA -.->|Convivenza| FF([🤝 Evian e Kovar trovano equilibrio.<br/>Non libertà, ma accettazione.])
+
+    %% Finale passivo
+    M1 -->|Evian ignora l'arco| IGN([🚶 Ichabod rivendica Evian off-screen.<br/>Diventa PNG o muore.])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style FE1 fill:#7ed321,stroke:#333,color:#000
+    style FF fill:#7ed321,stroke:#333,color:#000
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Personale PG** - Evian Oberjager

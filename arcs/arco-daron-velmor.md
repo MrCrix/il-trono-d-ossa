@@ -7,6 +7,103 @@ tipo: secondario
 
 # Arco Narrativo: Daron Velmor - Il Serpente che si Risveglia
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE 1: L'Esca a Yhaunn
+    START([🐍 Daron arriva a Yhaunn:<br/>voci su traffici di reliquie<br/>funerarie e mappe antiche]) --> A1[Il Mercante Nervoso - Varnoth:<br/>ha venduto mappe incomplete<br/>a uomini incappucciati]
+    A1 --> A1a[Simbolo del teschio alato:<br/>Cavalieri del Sepolcro Ombroso]
+    A1a --> A1b["Uno di loro aveva un tatuaggio<br/>identico al tuo.<br/>Ma non sembrava... vivo."]
+    A1b --> A2[Il tatuaggio di Daron<br/>brucia improvvisamente]
+    A2 --> A2a[Il serpente si contorce<br/>come se cercasse di fuggire]
+    A2a --> A3[Tracce contraddittorie:<br/>testimoni descrivono qualcuno<br/>col tatuaggio gemello]
+    A3 --> A3a["Pallido, vuoto,<br/>occhi non giusti"]
+    A3a --> A3b[Un bambino: "Il serpente<br/>sul suo braccio era morto.<br/>Il tuo è vivo."]
+    A3b --> A4[Messaggio criptico nel codice<br/>segreto di Daron e Serj]
+    A4 --> A4a["Non cercarmi. Cerca il cuore."]
+    A4a --> A4b{Interpretazione?}
+    A4b -->|Serj è vivo e avverte| A4c[Segue le tracce di Serj]
+    A4b -->|È una trappola| A4d[Procede con cautela]
+    A4b -->|Ultimo messaggio| A4e[Cerca il Cuore di Myrkul]
+
+    subgraph MINI1 ["Mini-Quest Fase 1 (Liv. 3-5 — Preludio)"]
+        MQ1a[Infiltrarsi nel mercato nero<br/>di Yhaunn]
+        MQ1b[Seguire un Cavaliere<br/>fino al nascondiglio]
+        MQ1c[Decifrare messaggio<br/>criptato sul tatuaggio]
+    end
+
+    A2a -.-> MINI1
+
+    A4c & A4d & A4e --> M1([⭐ Milestone 1: I Cavalieri<br/>cercano i portatori dei<br/>tatuaggi-mappa. Qualcuno col<br/>tatuaggio di Serj è con loro.<br/>Vivo, corrotto, o altro?])
+
+    %% FASE 2: Il Sentiero Spezzato
+    M1 --> B1[Lettera di Serj:<br/>ha trovato il padre<br/>"in un certo senso"]
+    B1 --> B1a[Serj sa dove si trova<br/>il Cuore di Myrkul]
+    B1a --> B2[I Cavalieri del Sepolcro Ombroso<br/>sono frammentati in correnti]
+    B2 --> B2a[Alcuni venerano Myrkul,<br/>altri cercano immortalità]
+    B2a --> B3[Il tatuaggio reagisce:<br/>proietta mappa illusoria]
+    B3 --> B3a[Locazione: Le Catacombe<br/>Sussurranti nel Sembia]
+    B3a --> B3b[Costo: ogni manifestazione<br/>svuota parte di Daron]
+    B3b --> B4[Ex-membro dei Cavalieri rivela:<br/>Vartan non morì cercando il Cuore]
+    B4 --> B4a[Fu trasformato:<br/>il Cuore corrompe chi lo tocca]
+    B4a --> B4b[Serj lo sa...<br/>e continua comunque]
+
+    subgraph MINI2 ["Mini-Quest Fase 2 (Liv. 6-10 — Cap. 1-2)"]
+        MQ2a[Infiltrarsi in un raduno<br/>dei Cavalieri]
+        MQ2b[Trovare il traditore<br/>che vendette Vartan]
+        MQ2c[Esplorare una cripta<br/>dove Serj ha lasciato segni]
+    end
+
+    B2 -.-> MINI2
+
+    B4b --> DEC{Decisioni cruciali}
+    DEC -->|Rivela il tatuaggio al gruppo| DEC1[Più aiuto ma più rischio]
+    DEC -->|Distrugge indizi per proteggere Serj| DEC2[Rallenta la ricerca]
+    DEC -->|Considera di unirsi ai Cavalieri| DEC3[Trova Serj ma si corrompe?]
+
+    DEC1 & DEC2 & DEC3 --> M2([⭐ Milestone 2: Vartan è ancora<br/>vivo - trasformato in non-morto<br/>legato al Cuore di Myrkul.])
+
+    %% FASE 3: Il Cuore Spezzato
+    M2 --> C1[Ritrovo con Serj<br/>nelle Catacombe Sussurranti]
+    C1 --> C1a[Serj è cambiato: ossessionato,<br/>consumato, parzialmente corrotto]
+    C1a --> C1b["Fratello, possiamo salvare papà.<br/>Ma solo se completiamo il rituale."]
+    C1b --> C2[Verità su Vartan:<br/>Signore della Morte Minore]
+    C2 --> C2a[Legato al Cuore, non può<br/>essere liberato senza distruggerlo]
+    C2a --> C2b[Distruggere il Cuore<br/>= uccidere Vartan definitivamente]
+    C2b --> C3[Rivelazione: il tatuaggio è<br/>un rituale incompiuto]
+    C3 --> C3a[Se completato: i fratelli<br/>diventano custodi viventi del Cuore]
+    C3a --> C3b[Immortali, potenti...<br/>ma schiavi dell'artefatto per sempre]
+    C3b --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Salvare Serj:<br/>completare il rituale]
+    SCELTA -->|B| FB[Distruggere il Cuore]
+    SCELTA -->|C| FC[Spezzare il legame:<br/>rimuovere il tatuaggio]
+    SCELTA -->|D| FD[Cercare una quarta via:<br/>redimere il Cuore]
+
+    FA --> FA1([⛓️ Custodi del Cuore per sempre.<br/>Serj vive. Perdono l'umanità<br/>ma restano insieme.])
+    FB --> FB1([💀 Vartan ucciso definitivamente.<br/>Serj non perdona mai.<br/>Daron è libero ma solo.])
+    FC --> FC1([🏃 Tatuaggio rimosso, legame spezzato.<br/>Serj abbandonato al suo destino.<br/>Vive col senso di colpa.])
+    FD --> FD1([✨ Cuore purificato. Vartan riposa.<br/>Serj salvato. Richiede aiuto divino<br/>e costi enormi. Potrebbe fallire.])
+
+    %% Finale passivo
+    M1 -->|Daron ignora l'arco| IGN([🚶 Serj continua da solo.<br/>Potrebbe diventare nemico minore.<br/>Cuore preso da altri.])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Personale PG** - Daron Velmor (Daniele)

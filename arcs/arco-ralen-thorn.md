@@ -10,6 +10,107 @@ connessioni: Orsinar Tharavos, Scrigno Antico
 
 # Arco Narrativo: Ralen Thorn - Il Peso della Promessa
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% ORIGINE: Morte di Ralen
+    START(["⚱️ Giorno 3: Ralen Thorn muore.<br/>Promessa ai PG: portare corpo<br/>e soldi a Elwen a Lowhill."]) --> A0{I PG accettano<br/>la promessa?}
+    A0 -->|Sì| A1
+    A0 -->|No| IGN0(["🚶 Promessa infranta.<br/>Elwen scopre della morte<br/>per altre vie."])
+
+    %% FASE 1: La Consegna a Yhaunn (Liv. 3-4)
+    subgraph FASE1 ["Fase 1: La Consegna a Yhaunn (Liv. 3-4 — Preludio)"]
+        A1["Giorno 6: Arrivo a Yhaunn<br/>con lo scrigno di Ralen"]
+        A1 --> A2["Mercante al porto chiede<br/>di oggetti antichi"]
+        A2 --> A2a{I PG menzionano<br/>Ralen?}
+        A2a -->|Sì| A2b["Il mercante si fa evasivo.<br/>Qualcuno li segue."]
+        A2a -->|No| A3
+        A2b --> A3["Cercare Orsinar Tharavos:<br/>non è nel suo ufficio"]
+        A3 --> A3a["Servitori: il padrone ha avuto<br/>visite strane ultimamente"]
+        A3a --> A4["Incontro con Orsinar"]
+        A4 --> A4a["Orsinar vede lo scrigno.<br/>Il suo volto cambia."]
+        A4a --> A4b["Paga generosamente: 50-100 mo"]
+        A4b --> A4c["Fa domande sulla morte di Ralen.<br/>Sembra preoccupato."]
+        A4c --> A4d["Chiede ai PG di portare<br/>il corpo a Lowhill:<br/>Ditele che mi dispiace."]
+    end
+
+    A4d --> DEC1{I PG vanno<br/>a Lowhill?}
+    DEC1 -->|No, tengono i soldi| IGN1(["💰 Scelta egoista.<br/>Peso morale. Possibile<br/>futuro incontro con Elwen."])
+    DEC1 -->|Sì| B1
+
+    subgraph INFO1 ["Indizi a Yhaunn (Liv. 3-4)"]
+        I1["Ralen aveva debiti<br/>con mezza Sembia"]
+        I2["Era stato visto con<br/>uomini incappucciati"]
+        I3["Qualcuno cercava uno<br/>scrigno antico in città"]
+    end
+
+    A3 -.-> INFO1
+
+    A4d --> M1([⭐ Milestone 1: Soldi ottenuti<br/>da Orsinar. Lo scrigno è più<br/>importante di quanto sembri.<br/>Decisione: andare a Lowhill?])
+
+    %% FASE 2: Il Viaggio a Lowhill (Liv. 3-4)
+    subgraph FASE2 ["Fase 2: Viaggio a Lowhill (Liv. 3-4 — Preludio/Cap. 1)"]
+        B1["2 giorni di viaggio a nord<br/>lungo la Strada dei Campi Bassi"]
+        B1 --> B2["Locanda: qualcuno riconosce<br/>il nome Ralen Thorn"]
+        B2 --> B2a["Quello stupido è ancora vivo?<br/>Mi doveva soldi."]
+        B2a --> B2b["Era un bravo ragazzo.<br/>Sfortunato, ma bravo."]
+        B2b --> B3["Tracce del passato:<br/>manifesti di debiti,<br/>storie di un fallito"]
+        B3 --> B3a{I PG dubitano:<br/>vale la pena?}
+        B3a -->|Qualcuno suggerisce<br/>di tenere i soldi| B3b["Ma Ralen si è fidato<br/>di loro. Questo conta."]
+        B3a -->|Proseguono| B4
+        B3b --> B4["Arrivo a Lowhill:<br/>villaggio piccolo, tranquillo"]
+        B4 --> B4a["La casa col melo spezzato<br/>ai margini del villaggio"]
+    end
+
+    B4a --> M2([⭐ Milestone 2: Arrivo a Lowhill.<br/>Ogni testimone ha rivelato<br/>un nuovo strato di Ralen.<br/>I PG devono affrontare Elwen.])
+
+    %% FASE 3: Il Confronto con Elwen (Liv. 3-5)
+    M2 --> C1["Elwen apre la porta.<br/>Vede estranei armati.<br/>Vede il corpo coperto."]
+    C1 --> C1a["Lo sapevo.<br/>Sapevo che non sarebbe tornato."]
+    C1a --> C2["I PG raccontano<br/>come è morto Ralen"]
+    C2 --> C2a{Cosa raccontano?}
+    C2a -->|Descrivono l'Ankheg| C2b["Era coraggioso.<br/>Stupido, ma coraggioso."]
+    C2a -->|Riportano le ultime parole| C2c["Almeno...<br/>ha pensato a me."]
+    C2a -->|Consegnano i soldi| C2d["Più di quanto abbia<br/>mai avuto in vita."]
+    C2b & C2c & C2d --> C3["Elwen racconta chi era Ralen"]
+    C3 --> C3a["Non era un eroe.<br/>Voleva essere grande<br/>ma non era abbastanza."]
+    C3a --> C3b["Era indebitato.<br/>Diceva sempre: questa volta<br/>sarà diverso."]
+    C3b --> C3c["Ma lo amavo.<br/>Perché tornava sempre."]
+    C3c --> C4{I PG menzionano<br/>lo scrigno?}
+    C4 -->|Sì| C4a["Elwen si irrigidisce:<br/>Non me ne ha mai parlato."]
+    C4a --> C4b["Rivelazione opzionale:<br/>un uomo col teschio alato<br/>cercava Ralen a Lowhill"]
+    C4 -->|No| C5
+    C4b --> C5["La Sepoltura:<br/>campo vicino alla cappella"]
+    C5 --> C5a["Cerimonia semplice.<br/>Elwen pianta un seme<br/>di melo sulla tomba."]
+    C5a --> C5b["Grazie per averlo<br/>portato a casa.<br/>Almeno non è morto da solo."]
+
+    C5b --> SCELTA{Risoluzione}
+    SCELTA -->|A| FA["La Promessa Mantenuta"]
+    SCELTA -->|B| FB["La Verità Omessa"]
+    SCELTA -->|D| FD["L'Indagine"]
+    SCELTA -->|E| FE["Il Nuovo Inizio"]
+
+    FA --> FA1(["🌳 Corpo e soldi consegnati.<br/>Elwen grata. Senso di compiutezza.<br/>Elwen diventa PNG amichevole."])
+    FB --> FB1(["🤐 Corpo consegnato ma<br/>non tutta la verità.<br/>Senso di incompiutezza."])
+    FD --> FD1(["🔍 I PG indagano sul passato<br/>di Ralen. Sotto-quest: creditori,<br/>segreti, lo scrigno."])
+    FE --> FE1(["🌱 Elwen usa i soldi per<br/>ricominciare. Lascia Lowhill.<br/>Possibile rincontro futuro."])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style FE1 fill:#7ed321,stroke:#333,color:#000
+    style IGN0 fill:#9b9b9b,stroke:#333,color:#fff
+    style IGN1 fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Secondario - Missione Personale**

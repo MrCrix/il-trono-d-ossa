@@ -7,6 +7,104 @@ tipo: secondario
 
 # Arco Narrativo: Polgara (Dara) - Il Prezzo dell'Eternità
 
+## Flusso delle Quest
+
+```mermaid
+flowchart TD
+    %% FASE 1: Il Patrono Silenzioso
+    START([🌀 Polgara lancia un incantesimo.<br/>Sente la presenza dell'entità.]) --> A1[Il Primo Sussurro:<br/>approvazione o disapprovazione<br/>senza spiegazione]
+    A1 --> A1a[Dettaglio: l'approvazione arriva<br/>quando NON riguarda la Profezia]
+    A1a --> A2[Il Viaggiatore elfo:<br/>ha visto un'altra donna<br/>con la ciocca bianca, secoli fa]
+    A2 --> A2a[Primo indizio: Polgara<br/>non è la prima con questo marchio]
+    A2a --> A3[Tentativo di contatto:<br/>meditazione con l'entità]
+    A3 --> A3a[Immagini: trono vuoto,<br/>catene spezzate, porta sigillata]
+    A3a --> A3b[L'entità vuole qualcosa<br/>ma non può o non vuole dirlo]
+    A3b --> A4[La Lettera Impossibile:<br/>calligrafia del piano d'origine]
+    A4 --> A4a["Sorella, so che sei viva.<br/>C'è un modo per tornare,<br/>ma il prezzo..."]
+    A4a --> A4b[La lettera si interrompe,<br/>strappata]
+
+    subgraph MINI1 ["Mini-Quest Fase 1 (Liv. 3-5 — Preludio)"]
+        MQ1a[Cercare info su altre<br/>persone con ciocche bianche]
+        MQ1b[Tentare rituali per<br/>tornare a casa — falliscono]
+        MQ1c[Investigare la natura<br/>dell'entità nei testi planari]
+        MQ1d[Seguire le tracce<br/>della lettera di Beldaran]
+    end
+
+    A3b -.-> MINI1
+
+    A4b --> M1([⭐ Milestone 1: Il Banishment<br/>fallisce non per caso. L'entità<br/>impedisce anche di essere mandata via.<br/>La Profezia potrebbe non applicarsi qui.])
+
+    %% FASE 2: I Nomi Dimenticati
+    M1 --> B1[Incontro con Erith:<br/>altro warlock con ciocca bianca,<br/>intrappolato anche lui]
+    B1 --> B1a["Il patrono raccoglie persone<br/>da altri piani. Perché noi?"]
+    B1a --> B2[Scoperta del nome:<br/>Il Custode dei Fili Spezzati]
+    B2 --> B2a[Non è un dio né un demone:<br/>lega chi è fuori sincronia<br/>col proprio destino]
+    B2a --> B2b[Verità terribile: Polgara<br/>doveva morire. È un'anomalia vivente.]
+    B2b --> B3[Proiezione astrale di Beldaran]
+    B3 --> B3a["Sorella, ho pagato un prezzo<br/>terribile per raggiungerti."]
+    B3a --> B3b[Esiste un rituale per spezzare<br/>il patto, ma serve consenso<br/>dell'entità o darle ciò che vuole]
+    B3b --> B4[La Profezia si incrina:<br/>è specifica per il suo piano,<br/>non si applica nel Faerûn]
+    B4 --> B4a{Millenni di sacrifici<br/>per una missione che<br/>non esiste più?}
+    B4a --> B5[Il Custode parla per la prima volta]
+    B5 --> B5a["Quando arriverà il momento,<br/>devi lasciare che qualcuno muoia."]
+    B5a --> B5b[Non dice chi, non dice quando.<br/>Se lo fa, sarà libera.]
+
+    subgraph MINI2 ["Mini-Quest Fase 2 (Liv. 6-10 — Cap. 1-2)"]
+        MQ2a[Cercare altri legati<br/>dal Custode dei Fili Spezzati]
+        MQ2b[Investigare chi è destinato<br/>a morire]
+        MQ2c[Trovare modi per comunicare<br/>con Beldaran stabilmente]
+        MQ2d[Decidere se la Profezia<br/>originale ha ancora valore]
+    end
+
+    B2 -.-> MINI2
+
+    B5b --> M2([⭐ Milestone 2: Chi deve<br/>lasciare morire è qualcuno<br/>del party o vicino a lei.<br/>Non omicidio: non-intervento.])
+
+    %% FASE 3: Il Filo Spezzato
+    M2 --> C1[Il Momento Arriva:<br/>qualcuno sta per morire,<br/>Polgara può salvarlo]
+    C1 --> C1a["Questa è la scelta.<br/>Lascialo andare, e sei libera."]
+    C1a --> C2[La Verità del Custode:<br/>gestisce anomalie del destino]
+    C2 --> C2a[Per liberare Polgara deve<br/>bilanciare: qualcuno muore<br/>al suo posto]
+    C2a --> C3[Arrivo fisico di Beldaran:<br/>invecchiata secoli in giorni]
+    C3 --> C3a["Sorella, sono qui.<br/>Torniamo insieme."]
+    C3a --> C3b[Ma Beldaran non sa<br/>della richiesta del Custode]
+    C3b --> C4[Alternativa di Erith:<br/>suicidio rituale collettivo<br/>di tutti i legati]
+    C4 --> SCELTA
+
+    SCELTA{🔥 SCELTA FINALE}
+    SCELTA -->|A| FA[Accettare la richiesta:<br/>lasciare morire la vittima]
+    SCELTA -->|B| FB[Salvare la persona<br/>e restare legata per sempre]
+    SCELTA -->|C| FC[Offrirsi al posto<br/>della vittima]
+    SCELTA -->|D| FD[Ingannare il Custode<br/>con finta morte]
+    SCELTA -->|E| FE[Unirsi al Custode<br/>come collaboratrice]
+    SCELTA -->|F| FF[Rifiutare tutto:<br/>abbracciare l'anomalia]
+
+    FA --> FA1([🏡 Libera, torna con Beldaran.<br/>Ma sangue sulle mani.<br/>Beldaran potrebbe non perdonarla.])
+    FB --> FB1([⛓️ Intrappolata per sempre.<br/>Mai a casa, mai da Beldaran.<br/>Ma coscienza pulita.])
+    FC --> FC1([💀 Muore, libera sé e la vittima.<br/>Fine dell'immortalità.<br/>Sacrificio definitivo.])
+    FD --> FD1([🎭 Libertà precaria.<br/>Il Custode potrebbe tornare.<br/>Vive nella paura.])
+    FE --> FE1([🌐 Nuovo scopo: gestire anomalie.<br/>Abbandona la Profezia.<br/>Parte del sistema che la teneva.])
+    FF --> FF1([🔥 Prigioniera fisica ma libera<br/>spiritualmente. Nessun ritorno a casa.<br/>Sceglie il proprio nuovo scopo.])
+
+    %% Finale passivo
+    M1 -->|Polgara ignora l'arco| IGN([🚶 Resta intrappolata.<br/>Il Custode non interferisce.<br/>L'arco resta dormiente.])
+
+    %% Stili
+    style START fill:#4a90d9,stroke:#333,color:#fff
+    style M1 fill:#f5a623,stroke:#333,color:#000
+    style M2 fill:#f5a623,stroke:#333,color:#000
+    style SCELTA fill:#d0021b,stroke:#333,color:#fff
+    style FA1 fill:#7ed321,stroke:#333,color:#000
+    style FB1 fill:#7ed321,stroke:#333,color:#000
+    style FC1 fill:#7ed321,stroke:#333,color:#000
+    style FD1 fill:#7ed321,stroke:#333,color:#000
+    style FE1 fill:#7ed321,stroke:#333,color:#000
+    style FF1 fill:#7ed321,stroke:#333,color:#000
+    style IGN fill:#9b9b9b,stroke:#333,color:#fff
+```
+
+---
+
 ## Tipo di Arco
 
 **Arco Personale PG** - Polgara (Dara)
