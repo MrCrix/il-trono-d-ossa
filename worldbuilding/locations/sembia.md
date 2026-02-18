@@ -57,3 +57,4 @@ Il declino divino potrebbe:
 - **Yhaunn:** Porto principale
 - **Selgaunt:** Città commerciale rivale di Ordulin
 - **Saerloon:** Porto meridionale
+- **Saerb:** Città di transito sulla Thunder Road, porta d'ingresso da Cormyr
