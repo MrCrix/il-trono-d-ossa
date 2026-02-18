@@ -147,6 +147,9 @@ Aggiungi: `medieval fantasy knight, full plate armor, fantasy RPG, NOT modern so
 **Se i colori sono sbagliati:**
 Specifica meglio: `black velvet with gold embroidery` / `pure black clothing` / `blackened steel armor`
 
+**Se lo scrigno esce aperto o con effetti magici:**
+Aggiungi: `firmly closed shut locked chest, no magic, no glow, no supernatural effects, mundane ancient artifact`
+
 ---
 
 ## File di Output Consigliati
@@ -155,6 +158,7 @@ Salva le immagini come:
 - `images/npcs/orsinar-tharavos.png`
 - `images/npcs/maitre-velloran.png`
 - `images/antagonists/valdric-morvaine.png`
+- `images/items/ralen-thorn-chest.png`
 
 ---
 
@@ -226,6 +230,40 @@ A failed adventurer and caravan guard aged 30-32, human male. Weather-worn face 
 
 ---
 
+## 7. Scrigno Antico di Ralen Thorn (Item)
+
+### Prompt Completo
+
+```
+An ancient closed wooden chest resting on a rough stone surface. Made of dark blackened oak aged 2000-3000 years, reinforced with heavily oxidized green-patina bronze fittings and corner brackets. The chest is 40cm wide, 25cm deep, 20cm tall, small and compact. The wood surface shows signs of prolonged burial: earth stains, mineral deposits, fine cracks from centuries underground. The front panel is carved with an inscription in angular yet flowing archaic script, partially worn. On the lid, a prominent carved symbol: a stylized eye superimposed over an ornate key, the emblem of a forgotten guild. Additional arcane-looking symbols and script cover the sides, a mix of angular and calligraphic characters. The bronze lock plate is intact but corroded green. The chest is firmly closed, latched shut. No magic, no glowing, no supernatural light. Lit by warm candlelight from the side, casting natural shadows. Background: dark stone wall, simple setting, perhaps a scholar's desk or cave floor. D&D fantasy style, oil painting quality, still life composition, ancient artifact, archaeological feel, muted earth tones, professional quality.
+```
+
+### Caratteristiche Chiave
+- **Tipo**: Oggetto/item, non personaggio
+- **Materiale**: Quercia annerita dal tempo, bronzo ossidato verde
+- **Età**: 2,000-3,000 anni, segni di sepoltura prolungata
+- **Dimensioni**: Piccolo e compatto (40x25x20 cm)
+- **Stato**: Chiuso, integro strutturalmente
+- **Simbolo principale**: Occhio stilizzato sovrapposto a una chiave (sulla copertura)
+- **Iscrizioni**: Script arcaico angolare/fluente sulla parte frontale e laterali
+- **Illuminazione**: Candela o luce ambiente, nessuna magia
+- **Atmosfera**: Antico, terroso, misterioso ma mundano
+
+### Negative Prompt
+```
+open chest, glowing, magical aura, supernatural light, neon, bright colors, modern, clean, new, shiny, polished, treasure inside visible, gems, gold coins, fantasy magic effects, particle effects, sparkles, ethereal glow, cyberpunk, anime, cartoon, plastic, metal chest, iron chest, large chest, human figure, character, portrait
+```
+
+### Prompt Breve
+```
+Ancient closed oak chest 2000 years old, blackened wood with oxidized bronze fittings, carved stylized eye-and-key symbol on lid, arcane angular script inscriptions, earth-stained from burial, green patina bronze lock, resting on stone surface, warm candlelight, no magic no glow, D&D fantasy still life, oil painting quality
+```
+
+### File di Output
+`images/items/ralen-thorn-chest.png`
+
+---
+
 ## Priorità per NanoBanana2
 
 ### Essenziali (personaggi centrali Preludio)
@@ -239,6 +277,7 @@ A failed adventurer and caravan guard aged 30-32, human male. Weather-worn face 
 
 ### Opzionali
 6. **Ralen Thorn** - Già morto nel gioco, ma utile per flashback
+7. **Scrigno di Ralen Thorn** - Item, utile come handout visivo
 
 ---
 
