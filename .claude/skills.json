@@ -1,0 +1,41 @@
+{
+  "skills": {
+    "session-start": {
+      "name": "session-start",
+      "description": "Inizia una nuova sessione di gioco D&D creando un file strutturato con metadata",
+      "prompt_file": ".claude/skills/session-start.md",
+      "examples": [
+        "/session-start"
+      ]
+    },
+    "session-note": {
+      "name": "session-note",
+      "description": "Aggiunge rapidamente note, eventi o decisioni alla sessione corrente",
+      "prompt_file": ".claude/skills/session-note.md",
+      "examples": [
+        "/session-note I giocatori hanno deciso di aiutare Ralen",
+        "/session-note Combattimento con 5 banditi - tutti sconfitti",
+        "/session-note Alan ha trovato una lettera misteriosa"
+      ]
+    },
+    "session-end": {
+      "name": "session-end",
+      "description": "Finalizza la sessione analizzando conseguenze e aggiornando archi narrativi",
+      "prompt_file": ".claude/skills/session-end.md",
+      "examples": [
+        "/session-end"
+      ]
+    },
+    "session-combat": {
+      "name": "session-combat",
+      "description": "Gestisce tracker di combattimento con iniziativa, HP e condizioni",
+      "prompt_file": ".claude/skills/session-combat.md",
+      "examples": [
+        "/session-combat start Attacco dei Banditi",
+        "/session-combat update Daron: -12 HP, prono",
+        "/session-combat update Turno 3",
+        "/session-combat end"
+      ]
+    }
+  }
+}
