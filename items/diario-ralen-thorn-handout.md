@@ -6,20 +6,6 @@
 
 ---
 
-## Nota per il DM
-
-Questo diario può essere trovato dai PG dopo la morte di Ralen (Giorno 3). La calligrafia cambia drammaticamente attraverso le voci:
-
-- **Voci vecchie** (mesi fa): Quasi illeggibili per acqua, tempo, pagine strappate
-- **Voci recenti** (prima del viaggio): Leggibili, nervose ma controllate
-- **Giorno 1 del viaggio**: Funzionale, leggermente paranoica
-- **Giorno 2 (post-attacco)**: Affrettata, macchiata di sangue, frasi spezzate
-- **Giorno 3**: Progressivamente illeggibile - dalla confusione delirante alla completa perdita di coerenza
-
-Le ultime due voci sono scritte mentre Ralen è in preda al delirio da veleno dei centopiedi giganti, spostato sulla Torre per essere medicato. Usa le sue ultime forze per lasciare un messaggio.
-
----
-
 ## Voci del Diario
 
 ### [Data illeggibile - circa 3 mesi fa]
@@ -180,7 +166,7 @@ Ho osservato gli altri mentre parlavo. Il tipo basso sembrava interessato. Anche
 
 Ma c'è qualcuno che mi mette a disagio. Quello chiamato Corvin, sul mio carro. Troppo educato. Troppo controllato. E ho notato un altro tipo, su uno dei carri davanti. Una mercante o forse una nobile minore. Continua a guardarmi. Forse sono paranoico.
 
-Probabilmente sono paranoico.
+Corvin ha chiesto di cambiare il carro. Ora c'è una ragazza di nome Polgara. Meglio così, non mi piaceva.
 
 Lo scrigno è ben nascosto. Nessuno sospetta nulla. Domani si continua.
 
@@ -192,7 +178,7 @@ Lo scrigno è ben nascosto. Nessuno sospetta nulla. Domani si continua.
 
 Attacco. Dal nulla.
 
-Creature dal terreno. Insetti enormi. Ovunque. Mandibole. Veleno.
+Creature dal terreno. Insetti enormi. Ovunque. Mandibole.
 
 Brucia. La gamba brucia. Faccio anche fatica a respirare.
 
@@ -233,6 +219,7 @@ Elwen. Ditele. Ditele che cocel fklç...
 *[Sembra essere stata strappata deliberatamente, poi reinserita]*
 
 Debiti:
+
 - Garris il Prestatore: 80 mo (interesse: 1 mo/mese)
 - Voren di Selgaunt: 120 mo (interesse: 2 mo/mese)
 - Locanda del Dragone Rosso: 15 mo
@@ -273,64 +260,3 @@ Io sono solo uno che finge.
 Ma per Elwen. Per lei posso—
 
 *[resto illeggibile]*
-
----
-
-## Cosa Rivela il Diario
-
-### Per i PG:
-
-1. **Ralen non sapeva cosa contenesse lo scrigno** - Pensava fosse solo un manufatto antico prezioso
-2. **Aveva debiti significativi** - Circa 250 mo più interessi
-3. **Era un passeggero, non una guardia** - Ha pagato 5 mo per il viaggio verso Yhaunn
-4. **Si fidava solo di Orsinar** - Lo considerava l'unico antiquario onesto
-5. **Era paranoico ma non senza ragione** - Qualcuno lo cercava? O era solo paura?
-6. **Amava profondamente Elwen** - Tutto ciò che faceva era per tornare da lei
-7. **Sapeva di non essere un grande avventuriero** - Ma sperava comunque
-8. **Le ultime voci sono deliranti** - Scritte in preda al veleno dei centopiedi, sempre più incoerenti fino alla morte
-
-### Per il DM:
-
-1. **La cripta vicino a Saerb è reale** - Potrebbe essere esplorata successivamente. Nord di Saerb, cripta crollata con nicchia nascosta dietro una lastra
-2. **Qualcuno a Saerb era interessato** - Chi erano quei "tizi" che lo guardavano strano dopo che ha chiesto della cripta?
-3. **La stima di 500-600 mo era accurata** - Orsinar offre 750 mo, quindi Ralen ci era andato vicino
-4. **Il riferimento a "Serj"** - Suo fratello, menzionato nel suo background. Ralen lo menziona nel delirio finale
-5. **Ralen aveva debiti specifici** - PNG che potrebbero ancora apparire: Garris il Prestatore (80 mo), Voren di Selgaunt (120 mo), Locanda del Dragone Rosso (15 mo), Fabbro di Lowhill (8 mo)
-6. **Ralen ha pagato per viaggiare** - Ha speso 5 mo (contrattato da 8) per arrivare a Yhaunn, sperando che lo scrigno valesse abbastanza da ripagare tutto
-7. **Osservazioni sui compagni di viaggio** - Ralen ha notato Corvin come "sospetto" e un altro mercante/nobile che lo guardava. Questo potrebbe essere usato per seminare sospetti nei PG
-8. **Timeline della morte** - Ferito il Giorno 2, spostato sulla Torre, è morto lentamente per 24 ore in preda al veleno dei centopiedi. Le voci mostrano la progressione del delirio
-
-### Dettagli Toccanti:
-
-- Continua a controllare lo scrigno ossessivamente durante il viaggio
-- I disegni di Elwen e della casa con il melo spezzato
-- La lista dei debiti accuratamente calcolata e cerchiata
-- Ha raccontato storie al campo la sera del Giorno 1, evitando accuratamente qualsiasi menzione dello scrigno
-- Ha notato Corvin come "sospetto" - troppo educato, troppo controllato
-- Le tre voci finali mostrano la progressiva perdita di lucidità: dal dolore fisico, al delirio, alle frasi telegrafiche finali
-- L'ultima voce è scritta con lettere enormi e tremanti, sangue mescolato all'inchiostro
-- La voce finale si interrompe a metà parola: "dite che ho..." e la mano cede
-- Una macchia d'inchiostro attraversa la pagina dove la penna è caduta
-- La speranza fino all'ultimo: "questa volta era davvero diverso"
-
----
-
-## Come Presentarlo ai PG
-
-**Quando trovano il diario** (nello zaino di Ralen, dopo la sua morte):
-
-> Tra le coperte e le provviste, trovate un piccolo diario rilegato in cuoio logoro. La copertina è macchiata e usurata. Alcune pagine sono strappate, altre quasi illeggibili per l'acqua o il tempo.
->
-> Quando lo aprite, riconoscete la calligrafia irregolare di Ralen. Le voci più vecchie sono sbiadite, ma le ultime - scritte nei giorni del viaggio - sono ancora leggibili.
->
-> Leggendo, capite che Ralen sapeva che lo scrigno era prezioso. Ma non sapeva cosa ci fosse scritto. Non sapeva cosa contenesse. Sperava solo che valesse abbastanza da salvarlo dai suoi debiti.
->
-> Le ultime tre voci sono strazianti. La prima, dopo l'attacco, è affrettata ma ancora comprensibile. La seconda è delirante, scritta in preda al veleno. L'ultima è quasi illeggibile: lettere enormi e tremanti, parole incomplete, una disperata richiesta che qualcuno porti lo scrigno a Orsinar e i soldi a Elwen.
->
-> La voce si interrompe a metà frase. Una macchia d'inchiostro attraversa la pagina dove la sua mano ha ceduto. Il resto è sangue.
-
-**Questo può rendere ancora più significativa la scelta del party di completare (o meno) la sua ultima volontà.**
-
----
-
-📌 **Il diario di Ralen trasforma lo scrigno da semplice oggetto prezioso a qualcosa di profondamente personale: era la speranza di un uomo disperato. E quella speranza è morta con lui, a meno che il party non scelga di onorarla.**
