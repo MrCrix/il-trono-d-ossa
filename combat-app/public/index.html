@@ -11,73 +11,110 @@
   <!-- Socket.IO Client -->
   <script src="/socket.io/socket.io.js"></script>
 
+  <!-- Sortable.js for Drag and Drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
   <!-- CSS -->
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <div id="app">
-    <header class="app-header">
-      <h1>⚔️ Combat Tracker - Il Trono d'Ossa</h1>
-      <div class="header-info">
-        <span class="encounter-name">{{ state.encounter }}</span>
-        <span class="round-counter">Round: {{ state.round }}</span>
-      </div>
-    </header>
+    <!-- A. TOP BAR -->
+    <top-bar
+      :encounter-name="state.encounter"
+      :round="state.round"
+      :current-turn-name="currentTurnName"
+      :can-undo="canUndo"
+      :combat-active="state.combatants.length > 0 && state.round > 0"
+      :has-combatants="state.combatants.length > 0"
+      @next-turn="handleNextTurn"
+      @prev-turn="handlePrevTurn"
+      @undo="handleUndo"
+      @reset="handleReset"
+      @new-encounter="handleNewEncounter"
+    ></top-bar>
 
-    <main class="app-main">
-      <!-- Control Panel -->
-      <control-panel
+    <!-- Main Layout Container -->
+    <div class="app-layout">
+      <!-- B. LEFT COLUMN (Mode-Switching: Setup vs Roster) -->
+      <left-column
+        :mode="leftColumnMode"
         :encounters="encounters"
-        :combat-active="state.combatants.length > 0"
+        :party-characters="partyCharacters"
+        :combatants="state.combatants"
+        :selected-combatant-id="selectedCombatantId"
+        :filter-type="rosterFilterType"
         @init-encounter="handleInitEncounter"
         @add-pc="handleAddPC"
-        @reset="handleReset"
-      ></control-panel>
+        @select-combatant="handleSelectCombatantById"
+        @set-filter="rosterFilterType = $event"
+        @new-encounter="handleNewEncounter"
+        @add-combatant="handleAddCombatant"
+      ></left-column>
 
-      <!-- Initiative Tracker -->
-      <initiative-tracker
-        v-if="state.combatants.length > 0"
-        :combatants="state.combatants"
-        :current-turn="state.current_turn"
-        :round="state.round"
-        @next-turn="handleNextTurn"
-        @prev-turn="handlePrevTurn"
-        @select-combatant="handleSelectCombatant"
-      ></initiative-tracker>
-
-      <!-- Combatants Grid -->
-      <div v-if="state.combatants.length > 0" class="combatants-grid">
-        <combatant-card
-          v-for="(combatant, index) in state.combatants"
-          :key="combatant.id"
-          :combatant="combatant"
-          :is-active="index === state.current_turn"
-          @damage="handleDamage"
-          @heal="handleHeal"
-          @update="handleUpdateCombatant"
-          @add-condition="handleAddCondition"
-        ></combatant-card>
+      <!-- C. CENTER PANEL (Initiative Timeline) -->
+      <div v-if="state.combatants.length > 0" class="center-panel">
+        <initiative-timeline
+          :combatants="state.combatants"
+          :current-turn="state.current_turn"
+          :hovered-id="hoveredCombatantId"
+          :selected-id="selectedCombatantId"
+          @select-combatant="handleSelectCombatantById"
+          @hover-combatant="hoveredCombatantId = $event"
+          @quick-damage="handleDamage"
+          @quick-heal="handleHeal"
+          @reorder-initiative="handleReorderInitiative"
+        ></initiative-timeline>
       </div>
-
-      <!-- Empty State -->
-      <div v-else class="empty-state">
+      <div v-else class="center-panel empty-state">
         <p>🎲 Nessun combattimento attivo</p>
-        <p>Seleziona un encounter per iniziare</p>
+        <p class="hint">Seleziona un encounter dal pannello a sinistra per iniziare</p>
       </div>
 
-      <!-- Combat Log -->
-      <combat-log
-        v-if="state.log.length > 0"
-        :entries="state.log"
-      ></combat-log>
-    </main>
+      <!-- D. DETAILS PANEL (Dettagli combattente selezionato) -->
+      <combatant-details
+        v-if="selectedCombatantId && selectedCombatant"
+        :combatant="selectedCombatant"
+        @damage="handleDamage"
+        @heal="handleHeal"
+        @update="handleUpdateCombatant"
+        @add-condition="handleAddCondition"
+        @remove-condition="handleRemoveCondition"
+        @toggle-dead="handleToggleDead"
+        @open-stat-block="openStatBlockModal"
+        @close="deselectCombatant"
+      ></combatant-details>
+      <div v-else class="details-panel empty-state">
+        <p>👈 Seleziona un combattente</p>
+        <p class="hint">Click su un nome nella timeline</p>
+      </div>
+
+      <!-- E. RIGHT PANEL (Combat Log) -->
+      <div class="right-panel">
+        <combat-log
+          :entries="state.log"
+          :collapsed="logCollapsed"
+          @toggle-collapsed="logCollapsed = !logCollapsed"
+          @clear="handleClearLog"
+        ></combat-log>
+      </div>
+    </div>
+
+    <!-- Stat Block Modal -->
+    <stat-block-modal
+      :show="showStatBlockModal"
+      :combatant="selectedCombatant"
+      @close="closeStatBlockModal"
+    ></stat-block-modal>
   </div>
 
   <!-- Scripts -->
-  <script src="/js/components/CombatantCard.js"></script>
-  <script src="/js/components/InitiativeTracker.js"></script>
-  <script src="/js/components/ControlPanel.js"></script>
+  <script src="/js/components/TopBar.js"></script>
+  <script src="/js/components/LeftColumn.js"></script>
+  <script src="/js/components/InitiativeTimeline.js"></script>
+  <script src="/js/components/CombatantDetails.js"></script>
   <script src="/js/components/CombatLog.js"></script>
+  <script src="/js/components/StatBlockModal.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>

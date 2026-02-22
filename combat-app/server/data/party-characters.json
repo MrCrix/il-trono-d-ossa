@@ -1,0 +1,56 @@
+[
+  {
+    "id": "evian",
+    "name": "Evian Oberjager",
+    "player": "Dario",
+    "class": "Guerriero",
+    "level": 3,
+    "hp_default": 30,
+    "ac_default": 18
+  },
+  {
+    "id": "polgara",
+    "name": "Polgara",
+    "player": "Luca",
+    "class": "Warlock",
+    "level": 3,
+    "hp_default": 23,
+    "ac_default": 12
+  },
+  {
+    "id": "daron",
+    "name": "Daron Velmor",
+    "player": "Daniele",
+    "class": "Bardo",
+    "level": 3,
+    "hp_default": 24,
+    "ac_default": 14
+  },
+  {
+    "id": "alan",
+    "name": "Alan Belgioioso",
+    "player": "Maximilian",
+    "class": "Ladro",
+    "level": 3,
+    "hp_default": 21,
+    "ac_default": 15
+  },
+  {
+    "id": "finnegan",
+    "name": "Finnegan \"Fin\" Rootfinder",
+    "player": "Davide",
+    "class": "Mago",
+    "level": 3,
+    "hp_default": 18,
+    "ac_default": 12
+  },
+  {
+    "id": "liawen",
+    "name": "Lia'wen Galanodel",
+    "player": "Sconosciuto",
+    "class": "Classe Sconosciuta",
+    "level": 3,
+    "hp_default": 25,
+    "ac_default": 14
+  }
+]

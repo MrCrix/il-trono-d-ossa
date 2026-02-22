@@ -14,12 +14,46 @@ const app = createApp({
         log: []
       },
       encounters: [],
-      connected: false
+      partyCharacters: [],
+      connected: false,
+      showStatBlockModal: false,
+
+      // New: 4-panel architecture state
+      selectedCombatantId: null,
+      hoveredCombatantId: null,
+      rosterFilterType: 'all', // 'all', 'player', 'enemy'
+      logCollapsed: false,
+      undoStack: [],
+      canUndo: false,
+      forceSetupMode: false,
+      isFirstStateReceived: true
     };
   },
+  computed: {
+    // Computed: selected combatant object
+    selectedCombatant() {
+      if (!this.selectedCombatantId) return null;
+      return this.state.combatants.find(c => c.id === this.selectedCombatantId);
+    },
+
+    // Computed: left column mode (setup vs roster)
+    leftColumnMode() {
+      if (this.forceSetupMode) return 'setup';
+      return this.state.combatants.length > 0 ? 'roster' : 'setup';
+    },
+
+    // Computed: current turn combatant name
+    currentTurnName() {
+      if (this.state.combatants.length === 0) return '';
+      const currentCombatant = this.state.combatants[this.state.current_turn];
+      return currentCombatant ? currentCombatant.name : '';
+    }
+  },
   mounted() {
+    console.log('[App] Vue app mounted!');
     this.initializeSocket();
     this.loadEncounters();
+    this.loadPartyCharacters();
   },
   methods: {
     // ========== WebSocket Setup ==========
@@ -38,6 +72,40 @@ const app = createApp({
 
       this.socket.on('combat:state-changed', (newState) => {
         console.log('[WebSocket] Stato aggiornato:', newState);
+
+        // Gestione stato stale: al primo caricamento, se c'è un combattimento
+        // precedente, mostra un avviso all'utente
+        if (this.isFirstStateReceived && newState.combatants.length > 0) {
+          this.isFirstStateReceived = false;
+          console.log('[App] Stato stale rilevato: combattimento precedente trovato');
+          // Dopo un breve delay per permettere il render iniziale
+          setTimeout(() => {
+            const continua = confirm(
+              `Trovato un combattimento precedente: "${newState.encounter}" (Round ${newState.round}, ${newState.combatants.length} combattenti).\n\n` +
+              'Vuoi continuare questo combattimento?\n\n' +
+              'OK = Continua\nAnnulla = Resetta e scegli nuovo encounter'
+            );
+            if (!continua) {
+              this.handleNewEncounter();
+            }
+          }, 300);
+        } else {
+          this.isFirstStateReceived = false;
+        }
+
+        // Se il turno è cambiato, auto-seleziona il combattente corrente
+        if (newState.current_turn !== this.state.current_turn && newState.combatants.length > 0) {
+          const currentCombatant = newState.combatants[newState.current_turn];
+          if (currentCombatant) {
+            this.selectedCombatantId = currentCombatant.id;
+          }
+        }
+
+        // Se lo stato è stato resettato (0 combattenti), disattiva forceSetupMode
+        if (newState.combatants.length === 0) {
+          this.forceSetupMode = false;
+        }
+
         this.state = newState;
       });
 
@@ -54,9 +122,31 @@ const app = createApp({
         const data = await response.json();
         if (data.success) {
           this.encounters = data.encounters;
+          console.log('[App] Encounters caricati:', this.encounters);
         }
       } catch (error) {
         console.error('Errore caricamento encounters:', error);
+      }
+    },
+
+    async loadPartyCharacters() {
+      try {
+        const response = await fetch('/api/party-characters');
+        const data = await response.json();
+        if (data.success) {
+          // Aggiungi campi reattivi per input e alias per compatibilità
+          this.partyCharacters = data.characters.map(pc => ({
+            ...pc,
+            hp: pc.hp_default,
+            ac: pc.ac_default,
+            initiative: null,
+            currentHp: null,
+            currentAc: null
+          }));
+          console.log('[App] Party characters caricati:', this.partyCharacters.length);
+        }
+      } catch (error) {
+        console.error('Errore caricamento party characters:', error);
       }
     },
 
@@ -68,6 +158,7 @@ const app = createApp({
         const data = await response.json();
         if (data.success) {
           console.log('Encounter inizializzato:', data.state);
+          this.forceSetupMode = false;
         } else {
           alert(`Errore inizializzazione: ${data.error}`);
         }
@@ -85,24 +176,36 @@ const app = createApp({
         const data = await response.json();
         if (data.success) {
           console.log('Combattimento resettato');
+          // Forza UI in setup mode e resetta stato locale
+          this.forceSetupMode = false;
+          this.selectedCombatantId = null;
+          this.undoStack = [];
+          this.canUndo = false;
         }
       } catch (error) {
         console.error('Errore reset:', error);
       }
     },
 
-    // ========== WebSocket Events ==========
-    handleDamage({ id, amount }) {
-      this.socket.emit('combat:damage', { id, amount });
+    async handleNewEncounter() {
+      try {
+        const response = await fetch('/api/combat/reset', {
+          method: 'POST'
+        });
+        const data = await response.json();
+        if (data.success) {
+          console.log('Combattimento resettato per nuovo encounter');
+          this.forceSetupMode = false;
+          this.selectedCombatantId = null;
+          this.undoStack = [];
+          this.canUndo = false;
+        }
+      } catch (error) {
+        console.error('Errore reset per nuovo encounter:', error);
+      }
     },
 
-    handleHeal({ id, amount }) {
-      this.socket.emit('combat:heal', { id, amount });
-    },
-
-    handleNextTurn() {
-      this.socket.emit('combat:next-turn');
-    },
+    // ========== WebSocket Events (without undo - for non-critical actions) ==========
 
     handlePrevTurn() {
       // Implementa prev turn via API
@@ -114,32 +217,128 @@ const app = createApp({
       this.socket.emit('combat:add-pc', pcData);
     },
 
-    handleUpdateCombatant({ id, changes }) {
-      this.socket.emit('combat:update', { id, changes });
+    handleAddCombatant(data) {
+      this.socket.emit('combat:add-combatant', data);
     },
 
     handleAddCondition({ id, condition }) {
+      this.pushUndo(`Aggiungi condizione: ${condition}`);
       this.socket.emit('combat:add-condition', { id, condition });
     },
 
-    handleSelectCombatant(id) {
-      // Trova index del combattente e imposta come turno corrente
-      const index = this.state.combatants.findIndex(c => c.id === id);
-      if (index !== -1) {
-        this.socket.emit('combat:update', {
-          id: 'state',
-          changes: { current_turn: index }
-        });
+    handleRemoveCondition({ id, condition }) {
+      this.pushUndo(`Rimuovi condizione: ${condition}`);
+      this.socket.emit('combat:remove-condition', { id, condition });
+    },
+
+    handleReorderInitiative({ oldIndex, newIndex }) {
+      // Riordina localmente per feedback immediato
+      const combatants = [...this.state.combatants];
+      const [movedItem] = combatants.splice(oldIndex, 1);
+      combatants.splice(newIndex, 0, movedItem);
+
+      // Aggiorna lo stato locale
+      this.state.combatants = combatants;
+
+      // Invia al server per persistenza
+      this.socket.emit('combat:reorder-initiative', { oldIndex, newIndex });
+    },
+
+    openStatBlockModal(combatant) {
+      this.showStatBlockModal = true;
+    },
+
+    closeStatBlockModal() {
+      this.showStatBlockModal = false;
+    },
+
+    // ========== New: 4-Panel Architecture Methods ==========
+
+    handleSelectCombatantById(id) {
+      this.selectedCombatantId = id;
+    },
+
+    deselectCombatant() {
+      this.selectedCombatantId = null;
+    },
+
+    handleToggleDead({ id }) {
+      const combatant = this.state.combatants.find(c => c.id === id);
+      if (!combatant) return;
+
+      this.socket.emit('combat:update', {
+        id,
+        changes: { is_dead: !combatant.is_dead }
+      });
+    },
+
+    handleClearLog() {
+      if (confirm('Vuoi cancellare il log di combattimento?')) {
+        this.state.log = [];
+        this.socket.emit('combat:clear-log');
       }
+    },
+
+    handleUndo() {
+      if (this.undoStack.length === 0) return;
+
+      const snapshot = this.undoStack.pop();
+      this.state = snapshot.state;
+
+      // Broadcast restored state
+      this.socket.emit('combat:restore-state', snapshot.state);
+
+      this.canUndo = this.undoStack.length > 0;
+
+      console.log(`[Undo] Ripristinato: ${snapshot.action}`);
+    },
+
+    pushUndo(action) {
+      // Save current state snapshot before making changes
+      this.undoStack.push({
+        timestamp: Date.now(),
+        action: action,
+        state: JSON.parse(JSON.stringify(this.state)) // deep clone
+      });
+
+      // Limit stack size to 10
+      if (this.undoStack.length > 10) {
+        this.undoStack.shift();
+      }
+
+      this.canUndo = true;
+    },
+
+    // Override existing handlers to include undo
+    handleDamage({ id, amount }) {
+      this.pushUndo(`Danno -${amount}`);
+      this.socket.emit('combat:damage', { id, amount });
+    },
+
+    handleHeal({ id, amount }) {
+      this.pushUndo(`Cura +${amount}`);
+      this.socket.emit('combat:heal', { id, amount });
+    },
+
+    handleNextTurn() {
+      this.pushUndo('Next Turn');
+      this.socket.emit('combat:next-turn');
+    },
+
+    handleUpdateCombatant({ id, changes }) {
+      this.pushUndo(`Update ${Object.keys(changes).join(', ')}`);
+      this.socket.emit('combat:update', { id, changes });
     }
   }
 });
 
-// Registra componenti
-app.component('combatant-card', CombatantCard);
-app.component('initiative-tracker', InitiativeTracker);
-app.component('control-panel', ControlPanel);
+// Registra componenti (new 4-panel architecture)
+app.component('top-bar', TopBar);
+app.component('left-column', LeftColumn);
+app.component('initiative-timeline', InitiativeTimeline);
+app.component('combatant-details', CombatantDetails);
 app.component('combat-log', CombatLog);
+app.component('stat-block-modal', StatBlockModal);
 
 // Mount app
 app.mount('#app');

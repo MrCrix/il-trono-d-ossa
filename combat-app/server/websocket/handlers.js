@@ -93,19 +93,29 @@ class WebSocketHandlers {
           return;
         }
 
-        // Incrementa turno
-        state.current_turn++;
-
-        // Nuovo round se necessario
-        if (state.current_turn >= state.combatants.length) {
-          state.current_turn = 0;
-          state.round++;
-
-          stateManager.addLogEntry(state, {
-            type: 'turn',
-            message: `Inizio round ${state.round}`
-          });
+        // Controlla se ci sono combattenti vivi
+        const hasAlive = state.combatants.some(c => !c.is_dead);
+        if (!hasAlive) {
+          socket.emit('error', { message: 'Tutti i combattenti sono morti' });
+          return;
         }
+
+        // Avanza al prossimo combattente vivo
+        const total = state.combatants.length;
+        let steps = 0;
+        do {
+          state.current_turn++;
+          if (state.current_turn >= total) {
+            state.current_turn = 0;
+            state.round++;
+
+            stateManager.addLogEntry(state, {
+              type: 'turn',
+              message: `Inizio round ${state.round}`
+            });
+          }
+          steps++;
+        } while (state.combatants[state.current_turn].is_dead && steps < total);
 
         const currentCombatant = state.combatants[state.current_turn];
 
@@ -165,6 +175,50 @@ class WebSocketHandlers {
         console.log(`[WebSocket] PG aggiunto: ${name}`);
       } catch (error) {
         console.error('[WebSocket] Errore combat:add-pc:', error);
+        socket.emit('error', { message: error.message });
+      }
+    });
+
+    // Aggiungi combattente generico (nemico/alleato)
+    socket.on('combat:add-combatant', async (data) => {
+      try {
+        const { name, type, initiative, hp, ac } = data;
+        const state = stateManager.load();
+
+        const newCombatant = {
+          id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          name: name,
+          type: type || 'enemy',
+          hp_current: hp || 10,
+          hp_max: hp || 10,
+          temp_hp: 0,
+          ac: ac || 10,
+          initiative: initiative,
+          initiative_modifier: 0,
+          conditions: [],
+          concentration: null,
+          notes: '',
+          is_dead: false,
+          is_hidden: false,
+          stat_block: null
+        };
+
+        state.combatants.push(newCombatant);
+
+        // Riordina per iniziativa
+        state.combatants.sort((a, b) => b.initiative - a.initiative);
+
+        const typeLabel = type === 'ally' ? 'Alleato' : 'Nemico';
+        stateManager.addLogEntry(state, {
+          type: 'system',
+          message: `${typeLabel} aggiunto: ${name} (Init: ${initiative}, HP: ${hp}, CA: ${ac})`
+        });
+
+        await stateManager.save(state);
+        this.io.emit('combat:state-changed', state);
+        console.log(`[WebSocket] ${typeLabel} aggiunto: ${name}`);
+      } catch (error) {
+        console.error('[WebSocket] Errore combat:add-combatant:', error);
         socket.emit('error', { message: error.message });
       }
     });
@@ -229,6 +283,81 @@ class WebSocketHandlers {
         console.log(`[WebSocket] Condizione aggiunta: ${combatant.name} -> ${condition}`);
       } catch (error) {
         console.error('[WebSocket] Errore combat:add-condition:', error);
+        socket.emit('error', { message: error.message });
+      }
+    });
+
+    // Rimuovi condizione
+    socket.on('combat:remove-condition', async (data) => {
+      try {
+        const { id, condition } = data;
+        const state = stateManager.load();
+        const combatant = stateManager.findCombatant(state, id);
+
+        if (!combatant) {
+          socket.emit('error', { message: 'Combattente non trovato' });
+          return;
+        }
+
+        // Rimuovi condizione
+        const index = combatant.conditions.indexOf(condition);
+        if (index > -1) {
+          combatant.conditions.splice(index, 1);
+
+          stateManager.addLogEntry(state, {
+            type: 'condition',
+            actor: 'DM',
+            target: combatant.name,
+            message: `${combatant.name} rimuove condizione: ${condition}`
+          });
+        }
+
+        // Salva e broadcast
+        await stateManager.save(state);
+        this.io.emit('combat:state-changed', state);
+        console.log(`[WebSocket] Condizione rimossa: ${combatant.name} -> ${condition}`);
+      } catch (error) {
+        console.error('[WebSocket] Errore combat:remove-condition:', error);
+        socket.emit('error', { message: error.message });
+      }
+    });
+
+    // Riordina iniziativa (drag-and-drop)
+    socket.on('combat:reorder-initiative', async (data) => {
+      try {
+        const { oldIndex, newIndex } = data;
+        const state = stateManager.load();
+
+        if (oldIndex < 0 || oldIndex >= state.combatants.length ||
+            newIndex < 0 || newIndex >= state.combatants.length) {
+          socket.emit('error', { message: 'Indici non validi' });
+          return;
+        }
+
+        // Riordina array
+        const [movedItem] = state.combatants.splice(oldIndex, 1);
+        state.combatants.splice(newIndex, 0, movedItem);
+
+        // Aggiusta current_turn se necessario
+        if (state.current_turn === oldIndex) {
+          state.current_turn = newIndex;
+        } else if (oldIndex < state.current_turn && newIndex >= state.current_turn) {
+          state.current_turn--;
+        } else if (oldIndex > state.current_turn && newIndex <= state.current_turn) {
+          state.current_turn++;
+        }
+
+        stateManager.addLogEntry(state, {
+          type: 'system',
+          message: `Ordine iniziativa modificato: ${movedItem.name} spostato`
+        });
+
+        // Salva e broadcast
+        await stateManager.save(state);
+        this.io.emit('combat:state-changed', state);
+        console.log(`[WebSocket] Iniziativa riordinata: ${oldIndex} -> ${newIndex}`);
+      } catch (error) {
+        console.error('[WebSocket] Errore combat:reorder-initiative:', error);
         socket.emit('error', { message: error.message });
       }
     });

@@ -34,7 +34,25 @@
       "Bash(# Check if we can use pandoc with HTML intermediate + a browser-based approach # Or check for other tools npm list -g)",
       "Bash(npx md-to-pdf:*)",
       "Bash(for f in *)",
-      "Bash(do echo \"=== $f ===\")"
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(claude skills:*)",
+      "Bash(open:*)",
+      "Bash(.claude/commands/combat-init.sh processione-carri-vuoti:*)",
+      "Bash(.claude/commands/combat-cmd.sh status:*)",
+      "Bash(.claude/commands/combat-cmd.sh hp:*)",
+      "Bash(.claude/commands/combat-cmd.sh init:*)",
+      "Bash(.claude/commands/combat-cmd.sh damage:*)",
+      "Bash(.claude/commands/combat-init.sh:*)",
+      "Bash(.claude/commands/combat-cmd.sh end:*)",
+      "Bash(jq:*)",
+      "Bash(.claude/commands/combat-cmd.sh addpc:*)",
+      "Bash(.claude/commands/combat-cmd.sh next:*)",
+      "Bash(bash:*)",
+      "Bash(timeout 5 npm start:*)",
+      "Bash(gtimeout 5:*)",
+      "Bash(cd:*)",
+      "Bash(xattr:*)",
+      "Bash(kill 81196:*)"
     ]
   }
 }

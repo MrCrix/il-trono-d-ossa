@@ -60,6 +60,19 @@ app.get('/api/encounters', (req, res) => {
 });
 
 /**
+ * GET /api/party-characters - Lista PG disponibili
+ */
+app.get('/api/party-characters', (req, res) => {
+  try {
+    const partyChars = require('./data/party-characters.json');
+    res.json({ success: true, characters: partyChars });
+  } catch (error) {
+    console.error('[API] Errore /api/party-characters:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
  * POST /api/combat/init/:name - Inizializza encounter
  */
 app.post('/api/combat/init/:name', async (req, res) => {
@@ -294,17 +307,26 @@ app.post('/api/combat/next-turn', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Nessun combattente presente' });
     }
 
-    state.current_turn++;
-
-    if (state.current_turn >= state.combatants.length) {
-      state.current_turn = 0;
-      state.round++;
-
-      stateManager.addLogEntry(state, {
-        type: 'turn',
-        message: `Inizio round ${state.round}`
-      });
+    const hasAlive = state.combatants.some(c => !c.is_dead);
+    if (!hasAlive) {
+      return res.status(400).json({ success: false, error: 'Tutti i combattenti sono morti' });
     }
+
+    const total = state.combatants.length;
+    let steps = 0;
+    do {
+      state.current_turn++;
+      if (state.current_turn >= total) {
+        state.current_turn = 0;
+        state.round++;
+
+        stateManager.addLogEntry(state, {
+          type: 'turn',
+          message: `Inizio round ${state.round}`
+        });
+      }
+      steps++;
+    } while (state.combatants[state.current_turn].is_dead && steps < total);
 
     const currentCombatant = state.combatants[state.current_turn];
 
@@ -334,12 +356,21 @@ app.post('/api/combat/prev-turn', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Nessun combattente presente' });
     }
 
-    state.current_turn--;
-
-    if (state.current_turn < 0) {
-      state.current_turn = state.combatants.length - 1;
-      state.round = Math.max(1, state.round - 1);
+    const hasAlive = state.combatants.some(c => !c.is_dead);
+    if (!hasAlive) {
+      return res.status(400).json({ success: false, error: 'Tutti i combattenti sono morti' });
     }
+
+    const total = state.combatants.length;
+    let steps = 0;
+    do {
+      state.current_turn--;
+      if (state.current_turn < 0) {
+        state.current_turn = total - 1;
+        state.round = Math.max(1, state.round - 1);
+      }
+      steps++;
+    } while (state.combatants[state.current_turn].is_dead && steps < total);
 
     await stateManager.save(state);
     wsHandlers.broadcastState(state);

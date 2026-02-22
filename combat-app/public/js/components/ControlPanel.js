@@ -7,7 +7,7 @@ const ControlPanel = {
         <!-- Encounter Selector -->
         <div class="encounter-selector">
           <h3>📚 Seleziona Encounter</h3>
-          <div style="display: flex; margin-top: 0.5rem;">
+          <div style="display: flex; margin-top: 0.5rem; gap: 0.5rem;">
             <select v-model="selectedEncounter">
               <option value="">-- Seleziona encounter --</option>
               <option
@@ -22,49 +22,65 @@ const ControlPanel = {
               @click="initEncounter"
               :disabled="!selectedEncounter"
             >
-              ⚔️ Inizia Combattimento
+              ⚔️ Inizia
             </button>
           </div>
         </div>
 
-        <!-- Add PC Form -->
-        <div class="add-pc-section">
-          <h3>👤 Aggiungi PG</h3>
-          <div class="add-pc-form">
-            <input
-              v-model="newPC.name"
-              placeholder="Nome"
-              @keyup.enter="addPC"
-            />
-            <input
-              v-model.number="newPC.initiative"
-              type="number"
-              placeholder="Iniziativa"
-              @keyup.enter="addPC"
-            />
-            <input
-              v-model.number="newPC.hp"
-              type="number"
-              placeholder="HP (default: 50)"
-              @keyup.enter="addPC"
-            />
-            <input
-              v-model.number="newPC.ac"
-              type="number"
-              placeholder="CA (default: 15)"
-              @keyup.enter="addPC"
-            />
-            <button @click="addPC">➕ Aggiungi</button>
+        <!-- Party Characters List -->
+        <div class="party-characters-section">
+          <h3>👥 Aggiungi PG al Combattimento</h3>
+          <div class="party-characters-list">
+            <div
+              v-for="pc in partyCharacters"
+              :key="pc.id"
+              class="pc-quick-add"
+            >
+              <div class="pc-info">
+                <span class="pc-name">{{ pc.name }}</span>
+                <span class="pc-details">{{ pc.class }} Lv{{ pc.level }}</span>
+              </div>
+              <div class="pc-stats">
+                <input
+                  v-model.number="pc.currentHp"
+                  type="number"
+                  :placeholder="'HP: ' + pc.hp_default"
+                  class="pc-input-small"
+                  title="HP (vuoto = default)"
+                />
+                <input
+                  v-model.number="pc.currentAc"
+                  type="number"
+                  :placeholder="'CA: ' + pc.ac_default"
+                  class="pc-input-small"
+                  title="CA (vuoto = default)"
+                />
+                <input
+                  v-model.number="pc.initiative"
+                  type="number"
+                  placeholder="Init"
+                  class="pc-input-init"
+                  @keyup.enter="addPCQuick(pc)"
+                  title="Iniziativa (obbligatorio)"
+                  required
+                />
+                <button
+                  @click="addPCQuick(pc)"
+                  :disabled="!pc.initiative"
+                  class="pc-add-btn"
+                  title="Aggiungi al combattimento"
+                >
+                  ➕
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Reset -->
-      <div class="reset-section" style="margin-top: 1rem;">
-        <button
-          v-if="combatActive"
-          @click="confirmReset"
-        >
+      <div class="reset-section" v-if="combatActive">
+        <button @click="confirmReset">
           🔄 Reset Combattimento
         </button>
       </div>
@@ -78,17 +94,15 @@ const ControlPanel = {
     combatActive: {
       type: Boolean,
       default: false
+    },
+    partyCharacters: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      selectedEncounter: '',
-      newPC: {
-        name: '',
-        initiative: null,
-        hp: null,
-        ac: null
-      }
+      selectedEncounter: ''
     };
   },
   methods: {
@@ -100,26 +114,23 @@ const ControlPanel = {
       this.$emit('init-encounter', this.selectedEncounter);
       this.selectedEncounter = '';
     },
-    addPC() {
-      if (!this.newPC.name || this.newPC.initiative === null) {
-        alert('Nome e iniziativa sono obbligatori!');
+    addPCQuick(pc) {
+      if (!pc.initiative) {
+        alert('Iniziativa obbligatoria!');
         return;
       }
 
-      this.$emit('add-pc', {
-        name: this.newPC.name,
-        initiative: this.newPC.initiative,
-        hp: this.newPC.hp || 50,
-        ac: this.newPC.ac || 15
-      });
-
-      // Reset form
-      this.newPC = {
-        name: '',
-        initiative: null,
-        hp: null,
-        ac: null
+      const pcData = {
+        name: pc.name,
+        initiative: pc.initiative,
+        hp: pc.currentHp || pc.hp_default,
+        ac: pc.currentAc || pc.ac_default
       };
+
+      this.$emit('add-pc', pcData);
+
+      // Reset solo iniziativa (HP e CA mantengono i valori custom se inseriti)
+      pc.initiative = null;
     },
     confirmReset() {
       if (confirm('⚠️ Sei sicuro di voler resettare il combattimento? Tutti i dati verranno persi.')) {

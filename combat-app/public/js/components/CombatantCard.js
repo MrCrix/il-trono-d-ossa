@@ -1,4 +1,4 @@
-// CombatantCard Component
+// CombatantCard Component - FASE 2: Interactive
 const CombatantCard = {
   name: 'CombatantCard',
   template: `
@@ -6,14 +6,20 @@ const CombatantCard = {
       <!-- Header -->
       <div class="card-header">
         <div class="card-title">
-          <div class="card-name">{{ combatant.name }}</div>
+          <div class="card-name" @click="openStatBlock" :title="'Click per stat block'" style="cursor: pointer;">
+            {{ combatant.name }} 📋
+          </div>
           <div :class="['card-type', combatant.type]">
             {{ combatant.type === 'player' ? '👤 PG' : '💀 Nemico' }}
           </div>
         </div>
         <div class="card-stats">
-          <div class="stat-badge">🛡️ CA {{ combatant.ac }}</div>
-          <div class="stat-badge">🎲 Init {{ combatant.initiative }}</div>
+          <div class="stat-badge" @dblclick="editAC" :title="'Doppio click per modificare'">
+            🛡️ CA {{ combatant.ac }}
+          </div>
+          <div class="stat-badge" @dblclick="editInitiative" :title="'Doppio click per modificare'">
+            🎲 {{ combatant.initiative }}
+          </div>
         </div>
       </div>
 
@@ -21,7 +27,9 @@ const CombatantCard = {
       <div class="card-hp">
         <div class="hp-text">
           <span>❤️ HP</span>
-          <span><strong>{{ combatant.hp_current }}</strong> / {{ combatant.hp_max }}</span>
+          <span @dblclick="editHP" :title="'Doppio click per modificare'" style="cursor: pointer;">
+            <strong>{{ combatant.hp_current }}</strong> / {{ combatant.hp_max }}
+          </span>
         </div>
         <div class="hp-bar-container">
           <div
@@ -32,14 +40,52 @@ const CombatantCard = {
         </div>
       </div>
 
-      <!-- Actions -->
+      <!-- Actions - Inline Inputs -->
       <div class="card-actions">
-        <button class="btn-damage" @click="openDamageDialog">
-          ⚔️ Danno
-        </button>
-        <button class="btn-heal" @click="openHealDialog">
-          ✨ Cura
-        </button>
+        <div class="action-group">
+          <button class="btn-damage" @click="toggleDamageInput" :class="{ active: showDamageInput }">
+            ⚔️ Danno
+          </button>
+          <div v-if="showDamageInput" class="inline-input-container">
+            <button class="quick-btn" @click="applyDamage(5)">-5</button>
+            <button class="quick-btn" @click="applyDamage(10)">-10</button>
+            <input
+              ref="damageInput"
+              v-model.number="damageAmount"
+              type="number"
+              placeholder="Custom"
+              class="inline-input"
+              @keyup.enter="applyCustomDamage"
+              @keyup.esc="showDamageInput = false"
+            />
+            <button class="apply-btn" @click="applyCustomDamage" :disabled="!damageAmount">
+              ✓
+            </button>
+          </div>
+        </div>
+
+        <div class="action-group">
+          <button class="btn-heal" @click="toggleHealInput" :class="{ active: showHealInput }">
+            ✨ Cura
+          </button>
+          <div v-if="showHealInput" class="inline-input-container">
+            <button class="quick-btn" @click="applyHeal(5)">+5</button>
+            <button class="quick-btn" @click="applyHeal(10)">+10</button>
+            <input
+              ref="healInput"
+              v-model.number="healAmount"
+              type="number"
+              placeholder="Custom"
+              class="inline-input"
+              @keyup.enter="applyCustomHeal"
+              @keyup.esc="showHealInput = false"
+            />
+            <button class="apply-btn" @click="applyCustomHeal" :disabled="!healAmount">
+              ✓
+            </button>
+          </div>
+        </div>
+
         <button class="btn-dead" @click="toggleDead">
           {{ combatant.is_dead ? '💀 Morto' : '☠️ Uccidi' }}
         </button>
@@ -52,8 +98,10 @@ const CombatantCard = {
             v-for="(condition, index) in combatant.conditions"
             :key="index"
             class="condition-badge"
+            @click="removeCondition(condition)"
+            :title="'Click per rimuovere'"
           >
-            {{ condition }}
+            {{ condition }} ✕
           </span>
           <button
             v-if="!showConditionInput"
@@ -70,7 +118,7 @@ const CombatantCard = {
             placeholder="Nome condizione..."
             class="add-condition-input"
             ref="conditionInput"
-            style="padding: 0.25rem 0.5rem; border-radius: 4px; border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text);"
+            style="padding: 0.25rem 0.5rem; border-radius: 4px; border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); font-size: 0.7rem;"
           />
         </div>
       </div>
@@ -96,7 +144,11 @@ const CombatantCard = {
   },
   data() {
     return {
+      showDamageInput: false,
+      showHealInput: false,
       showConditionInput: false,
+      damageAmount: null,
+      healAmount: null,
       newCondition: ''
     };
   },
@@ -112,22 +164,48 @@ const CombatantCard = {
     }
   },
   methods: {
-    openDamageDialog() {
-      const amount = prompt(`Danno a ${this.combatant.name}:`, '5');
-      if (amount && !isNaN(amount)) {
-        this.$emit('damage', {
-          id: this.combatant.id,
-          amount: parseInt(amount)
+    toggleDamageInput() {
+      this.showDamageInput = !this.showDamageInput;
+      this.showHealInput = false;
+      if (this.showDamageInput) {
+        this.$nextTick(() => {
+          this.$refs.damageInput?.focus();
         });
       }
     },
-    openHealDialog() {
-      const amount = prompt(`Cura HP a ${this.combatant.name}:`, '5');
-      if (amount && !isNaN(amount)) {
-        this.$emit('heal', {
-          id: this.combatant.id,
-          amount: parseInt(amount)
+    toggleHealInput() {
+      this.showHealInput = !this.showHealInput;
+      this.showDamageInput = false;
+      if (this.showHealInput) {
+        this.$nextTick(() => {
+          this.$refs.healInput?.focus();
         });
+      }
+    },
+    applyDamage(amount) {
+      this.$emit('damage', {
+        id: this.combatant.id,
+        amount: amount
+      });
+      this.showDamageInput = false;
+    },
+    applyCustomDamage() {
+      if (this.damageAmount && this.damageAmount > 0) {
+        this.applyDamage(this.damageAmount);
+        this.damageAmount = null;
+      }
+    },
+    applyHeal(amount) {
+      this.$emit('heal', {
+        id: this.combatant.id,
+        amount: amount
+      });
+      this.showHealInput = false;
+    },
+    applyCustomHeal() {
+      if (this.healAmount && this.healAmount > 0) {
+        this.applyHeal(this.healAmount);
+        this.healAmount = null;
       }
     },
     toggleDead() {
@@ -135,6 +213,33 @@ const CombatantCard = {
         id: this.combatant.id,
         changes: { is_dead: !this.combatant.is_dead }
       });
+    },
+    editHP() {
+      const newHP = prompt(`HP corrente per ${this.combatant.name}:`, this.combatant.hp_current);
+      if (newHP !== null && !isNaN(newHP)) {
+        this.$emit('update', {
+          id: this.combatant.id,
+          changes: { hp_current: parseInt(newHP) }
+        });
+      }
+    },
+    editAC() {
+      const newAC = prompt(`CA per ${this.combatant.name}:`, this.combatant.ac);
+      if (newAC !== null && !isNaN(newAC)) {
+        this.$emit('update', {
+          id: this.combatant.id,
+          changes: { ac: parseInt(newAC) }
+        });
+      }
+    },
+    editInitiative() {
+      const newInit = prompt(`Iniziativa per ${this.combatant.name}:`, this.combatant.initiative);
+      if (newInit !== null && !isNaN(newInit)) {
+        this.$emit('update', {
+          id: this.combatant.id,
+          changes: { initiative: parseInt(newInit) }
+        });
+      }
     },
     addCondition() {
       if (this.newCondition.trim()) {
@@ -145,6 +250,15 @@ const CombatantCard = {
         this.newCondition = '';
         this.showConditionInput = false;
       }
+    },
+    removeCondition(condition) {
+      this.$emit('remove-condition', {
+        id: this.combatant.id,
+        condition: condition
+      });
+    },
+    openStatBlock() {
+      this.$emit('open-stat-block', this.combatant);
     },
     cancelCondition() {
       setTimeout(() => {
