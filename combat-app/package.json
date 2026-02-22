@@ -1,0 +1,25 @@
+{
+  "name": "combat-tracker-app",
+  "version": "1.0.0",
+  "description": "Combat Tracker Interattivo per D&D 5e - Il Trono d'Ossa",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "keywords": ["dnd", "combat", "tracker", "d&d"],
+  "author": "Il Trono d'Ossa Campaign",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.0",
+    "socket.io": "^4.6.0",
+    "marked": "^11.0.0",
+    "uuid": "^9.0.0",
+    "chokidar": "^3.5.0",
+    "dotenv": "^16.0.0",
+    "proper-lockfile": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}

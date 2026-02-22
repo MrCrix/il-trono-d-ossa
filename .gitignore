@@ -26,3 +26,9 @@ Thumbs.db
 *.tmp
 *.bak
 ~*
+
+# Combat tracker
+combat-state.json
+combat-state.backup.json
+combat-app/node_modules/
+combat-app/.env

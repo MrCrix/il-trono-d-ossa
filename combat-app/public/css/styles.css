@@ -1,0 +1,498 @@
+/* Combat Tracker - Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #1a1a1a;
+  --color-bg-light: #2a2a2a;
+  --color-border: #444;
+  --color-text: #e0e0e0;
+  --color-text-dim: #999;
+  --color-primary: #e63946;
+  --color-success: #06d6a0;
+  --color-warning: #f77f00;
+  --color-danger: #dc2f02;
+  --color-enemy: #8b0000;
+  --color-player: #1e90ff;
+  --color-hp-high: #06d6a0;
+  --color-hp-mid: #f77f00;
+  --color-hp-low: #dc2f02;
+  --spacing: 1rem;
+  --border-radius: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* Header */
+.app-header {
+  background: var(--color-bg-light);
+  border-bottom: 2px solid var(--color-primary);
+  padding: var(--spacing);
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-info {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 1.1rem;
+}
+
+.encounter-name {
+  color: var(--color-warning);
+  font-weight: bold;
+}
+
+.round-counter {
+  color: var(--color-success);
+}
+
+/* Main */
+.app-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing);
+}
+
+/* Control Panel */
+.control-panel {
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.control-panel-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing);
+}
+
+.encounter-selector select,
+.encounter-selector button,
+.add-pc-form input,
+.add-pc-form button,
+.reset-section button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.encounter-selector select {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.encounter-selector button {
+  background: var(--color-success);
+  color: white;
+  font-weight: bold;
+}
+
+.encounter-selector button:hover {
+  opacity: 0.8;
+}
+
+.add-pc-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.add-pc-form input {
+  flex: 1;
+  min-width: 120px;
+}
+
+.add-pc-form button {
+  background: var(--color-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.reset-section button {
+  background: var(--color-danger);
+  color: white;
+  width: 100%;
+}
+
+/* Initiative Tracker */
+.initiative-tracker {
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.initiative-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing);
+}
+
+.initiative-controls button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.initiative-controls button:hover {
+  opacity: 0.8;
+}
+
+.initiative-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.initiative-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.initiative-item:hover {
+  background: #333;
+}
+
+.initiative-item.active {
+  border-color: var(--color-primary);
+  background: #333;
+}
+
+.initiative-marker {
+  width: 20px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.initiative-number {
+  width: 40px;
+  font-weight: bold;
+  color: var(--color-warning);
+}
+
+.initiative-name {
+  flex: 1;
+}
+
+.initiative-hp {
+  color: var(--color-text-dim);
+  margin-right: 1rem;
+}
+
+/* Combatants Grid */
+.combatants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+/* Combatant Card */
+.combatant-card {
+  background: var(--color-bg-light);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+  transition: all 0.3s;
+}
+
+.combatant-card.active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+}
+
+.combatant-card.dead {
+  opacity: 0.5;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  flex: 1;
+}
+
+.card-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.card-type {
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+}
+
+.card-type.enemy {
+  color: var(--color-danger);
+}
+
+.card-type.player {
+  color: var(--color-player);
+}
+
+.card-stats {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.stat-badge {
+  background: var(--color-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.card-hp {
+  margin-bottom: var(--spacing);
+}
+
+.hp-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.hp-bar-container {
+  height: 20px;
+  background: var(--color-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.hp-bar {
+  height: 100%;
+  transition: width 0.3s, background-color 0.3s;
+  border-radius: 10px;
+}
+
+.hp-bar.high {
+  background: var(--color-hp-high);
+}
+
+.hp-bar.mid {
+  background: var(--color-hp-mid);
+}
+
+.hp-bar.low {
+  background: var(--color-hp-low);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing);
+}
+
+.btn-damage,
+.btn-heal,
+.btn-dead {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.btn-damage {
+  background: var(--color-danger);
+  color: white;
+}
+
+.btn-heal {
+  background: var(--color-success);
+  color: white;
+}
+
+.btn-dead {
+  background: var(--color-bg);
+  color: var(--color-text-dim);
+  border: 1px solid var(--color-border);
+}
+
+.btn-damage:hover,
+.btn-heal:hover,
+.btn-dead:hover {
+  opacity: 0.8;
+}
+
+.card-conditions {
+  margin-top: 0.5rem;
+}
+
+.conditions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.condition-badge {
+  background: var(--color-warning);
+  color: var(--color-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.add-condition-btn {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px dashed var(--color-border);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.add-condition-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Combat Log */
+.combat-log {
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.log-header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.log-entry {
+  font-size: 0.9rem;
+  padding: 0.25rem;
+  border-left: 3px solid transparent;
+}
+
+.log-entry.damage {
+  border-left-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.log-entry.heal {
+  border-left-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.log-entry.turn {
+  border-left-color: var(--color-primary);
+  color: var(--color-warning);
+}
+
+.log-entry.system {
+  border-left-color: var(--color-text-dim);
+  color: var(--color-text-dim);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--color-text-dim);
+}
+
+.empty-state p:first-child {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state p:last-child {
+  font-size: 1.2rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .combatants-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .control-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
