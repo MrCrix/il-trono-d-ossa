@@ -29,8 +29,8 @@ class EncounterParser {
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
 
-      // Cerca pattern: ### N × Nome (CR X) oppure ### N x Nome
-      const headerMatch = line.match(/^###\s*(\d+)\s*[×x]\s*([^(]+)\s*\(CR/i);
+      // Cerca pattern: ### N × Nome (CR X) oppure ### N x Nome (descrizione, CR X)
+      const headerMatch = line.match(/^###\s*(\d+)\s*[×x]\s*([^(]+)\s*\([^)]*CR/i);
 
       if (headerMatch) {
         const count = parseInt(headerMatch[1]);
